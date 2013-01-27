@@ -1,7 +1,7 @@
 Source: buddycloud-webclient
 Section: misc
 Priority: optional
-Maintainer: Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com> 
+Maintainer: Abmar Barros (buddycloud Packaging) <abmar@buddycloud.com> 
 Uploaders: Rodrigo Duarte <rodrigo@buddycloud.com>
 Build-Depends: debhelper (>= 8), cdbs
 Standards-Version: 3.9.3

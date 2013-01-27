@@ -3,11 +3,11 @@ set -e
 
 # Global nightly building script for buddycloud projects
 # Iterates over all the project in the projects folder, 
-# checks if there is new commit for it int github that was not built yet
+# checks if there is new commit for it github that was not built yet
 # and builds it. 
 
 # Build variables
-DEBFULLNAME="Abmar Barros (buddycloud Nightly Builds)"
+DEBFULLNAME="Abmar Barros (buddycloud Packaging)"
 DEBEMAIL="abmar@buddycloud.com"
 
 CURRENT_DIR="$(pwd)"
