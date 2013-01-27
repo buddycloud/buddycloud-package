@@ -96,6 +96,6 @@ ${CHANGELOG}\n\n\
   # Copy packages to download folder
   DOWNLOAD_PACKAGE_DIR=$DOWNLOAD_ROOT/$PACKAGE/$SOURCE
   mkdir -p $DOWNLOAD_PACKAGE_DIR
-  rsync -ad --exclude='*/' $PROJECT_PATH/$SOURCE* $DOWNLOAD_PACKAGE_DIR
+  rsync -a $PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}* $DOWNLOAD_PACKAGE_DIR
 
 done
