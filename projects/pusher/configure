@@ -1,5 +1,5 @@
 PROJECT_NAME=buddycloud-pusher
-PACKAGE=buddycloudmediaserver
+PACKAGE=buddycloud-pusher
 GIT_URL=https://github.com/buddycloud/buddycloud-pusher.git
 DIST_VERSION=0.1
 DIST=unstable
