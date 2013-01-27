@@ -10,7 +10,8 @@ set -e
 DEBFULLNAME="Abmar Barros (buddycloud Packaging)"
 DEBEMAIL="abmar@buddycloud.com"
 
-CURRENT_DIR="$(pwd)"
+DIR_NAME="$(dirname $0)"
+CURRENT_DIR="$(cd $DIR_NAME; pwd)"
 PROJECTS_DIR=$CURRENT_DIR/projects
 BUILD_DIR=$CURRENT_DIR/build
 
