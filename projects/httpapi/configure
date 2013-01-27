@@ -1,0 +1,5 @@
+PROJECT_NAME=buddycloud-http-api
+PACKAGE=buddycloud-http-api
+GIT_URL=https://github.com/buddycloud/buddycloud-http-api.git
+DIST_VERSION=0.1
+DIST=unstable

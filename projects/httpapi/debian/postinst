@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+pkg=buddycloud-http-api
+
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_pgsql_createdb_encoding="UTF8"
+dbc_go "$pkg" "$@"
+
+if [ "$1" = "configure" ]; then
+	adduser --system --quiet --group --disabled-password \
+		--gecos "Buddycloud XMPP channel service" \
+		--no-create-home --home "/var/run/$pkg" \
+		buddycloud
+fi
+
+#DEBHELPER#

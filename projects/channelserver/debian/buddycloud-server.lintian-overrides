@@ -1,0 +1,2 @@
+# Deliberately skipped: faster leaving to internal sysV cleanup
+buddycloud-server: init.d-script-possible-missing-stop etc/init.d/buddycloud-server 0 6

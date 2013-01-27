@@ -1,0 +1,2 @@
+/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/install	/usr/share/doc/buddycloud-server/examples/install.sql
+/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/upgrade-1  /usr/share/doc/buddycloud-server/examples/upgrade-1.sql

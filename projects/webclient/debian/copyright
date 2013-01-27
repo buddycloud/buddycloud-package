@@ -1,0 +1,19 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: buddycloud-webclient
+Upstream-Contact: Rodrigo Duarte <rodrigo@buddycloud.com>
+ https://github.com/buddycloud/webclient/issues/
+Source: https://github.com/buddycloud/webclient/downloads
+ git://github.com/buddycloud/webclient
+
+Files: *
+Copyright: Copyright 2013 Rodrigo Duarte <rodrigo@buddycloud.com>
+License: Apache-2
+ buddycloud-webclient is distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+
+Files: debian/*
+Copyright: Copyright 2013 Abmar Barros <abmar@buddycloud.com>
+License: Apache-2
+ buddycloud-webclient debian files are distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+

@@ -1,0 +1,5 @@
+PROJECT_NAME=buddycloud-server
+PACKAGE=buddycloud-server
+GIT_URL=https://github.com/buddycloud/buddycloud-server.git
+DIST_VERSION=0.1
+DIST=unstable

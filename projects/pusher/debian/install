@@ -1,0 +1,7 @@
+lib usr/share/buddycloudpusher
+resources/schema usr/share/buddycloudpusher
+templates usr/share/buddycloudpusher
+README.md usr/share/buddycloudpusher
+configuration.properties usr/share/buddycloudpusher
+target/buddycloudpusher-*.jar usr/share/buddycloudpusher/lib
+resources/init.d/buddycloud-pusher etc/init.d

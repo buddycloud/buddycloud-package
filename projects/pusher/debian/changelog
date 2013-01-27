@@ -1,0 +1,235 @@
+buddycloudpusher (0.1) unstable; urgency=medium
+
+  [ Reginald dude ]
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  [ Reginald Dude ]
+  * Update README.md
+  [ abmargb ]
+  * Added connection retry strategy.
+  * Switch to version 0.5.
+  * Recipes for debian packaging. Ant build script.
+  * Removed consumer properties from configuration.properties
+  * Fixes #4.
+  * Fixes #5.
+  * Fixes #6
+  * Fixes #3.
+  * Fixing notification filtering for following channels.
+  * Updated templates.
+  * Added some logging in the pusher class.
+  * Removed smack hacks.
+  * Implemented message consumer precendence.
+  * Added RSM scrolling to affiliations retrieval.
+  * Fixed signup handler for full jids.
+  * Updated templates.
+  * Refactoring handlers to emulate a loopback connection. Updating them to comply with the latest templates.
+  * Removing separate XMPP connection to consume pusher events. Added message handling to the component itself.
+  * Adding per-context consumers.
+  * Events node consumer.
+  * Adding smack hacks.
+  * Fixes #1 https://github.com/buddycloud/buddycloud-pusher/issues/1
+  * Fixes notification default settings.
+  * Added db commands for creating and dropping the schema. Fixed a few bugs regarding stanza to db translation.
+  * Lighter database schema. Follow request notification.
+  * Refactored email pusher design for batch sending.
+  * Added follow request notification, fixed templates tags.
+  * Added Set Notification Settings stanza.
+  * Added get notification settings stanza.
+  * Added stanzas for several notification methods.
+  * Added Unsubscribe handler and DataSource
+  * First commit: component basic architecture, email templating and welcome email.
+
+ -- Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com>  Sat, 26 Jan 2013 13:40:00 -0300
+
+
+buddycloudpusher (0.1) unstable; urgency=medium
+
+  [ Reginald dude ]
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  [ Reginald Dude ]
+  * Update README.md
+  [ abmargb ]
+  * Added connection retry strategy.
+  * Switch to version 0.5.
+  * Recipes for debian packaging. Ant build script.
+  * Removed consumer properties from configuration.properties
+  * Fixes #4.
+  * Fixes #5.
+  * Fixes #6
+  * Fixes #3.
+  * Fixing notification filtering for following channels.
+  * Updated templates.
+  * Added some logging in the pusher class.
+  * Removed smack hacks.
+  * Implemented message consumer precendence.
+  * Added RSM scrolling to affiliations retrieval.
+  * Fixed signup handler for full jids.
+  * Updated templates.
+  * Refactoring handlers to emulate a loopback connection. Updating them to comply with the latest templates.
+  * Removing separate XMPP connection to consume pusher events. Added message handling to the component itself.
+  * Adding per-context consumers.
+  * Events node consumer.
+  * Adding smack hacks.
+  * Fixes #1 https://github.com/buddycloud/buddycloud-pusher/issues/1
+  * Fixes notification default settings.
+  * Added db commands for creating and dropping the schema. Fixed a few bugs regarding stanza to db translation.
+  * Lighter database schema. Follow request notification.
+  * Refactored email pusher design for batch sending.
+  * Added follow request notification, fixed templates tags.
+  * Added Set Notification Settings stanza.
+  * Added get notification settings stanza.
+  * Added stanzas for several notification methods.
+  * Added Unsubscribe handler and DataSource
+  * First commit: component basic architecture, email templating and welcome email.
+
+ -- Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com>  Sat, 26 Jan 2013 13:43:58 -0300
+
+
+buddycloudpusher (0.1) unstable; urgency=medium
+
+  [ Reginald dude ]
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  [ Reginald Dude ]
+  * Update README.md
+  [ abmargb ]
+  * Added connection retry strategy.
+  * Switch to version 0.5.
+  * Recipes for debian packaging. Ant build script.
+  * Removed consumer properties from configuration.properties
+  * Fixes #4.
+  * Fixes #5.
+  * Fixes #6
+  * Fixes #3.
+  * Fixing notification filtering for following channels.
+  * Updated templates.
+  * Added some logging in the pusher class.
+  * Removed smack hacks.
+  * Implemented message consumer precendence.
+  * Added RSM scrolling to affiliations retrieval.
+  * Fixed signup handler for full jids.
+  * Updated templates.
+  * Refactoring handlers to emulate a loopback connection. Updating them to comply with the latest templates.
+  * Removing separate XMPP connection to consume pusher events. Added message handling to the component itself.
+  * Adding per-context consumers.
+  * Events node consumer.
+  * Adding smack hacks.
+  * Fixes #1 https://github.com/buddycloud/buddycloud-pusher/issues/1
+  * Fixes notification default settings.
+  * Added db commands for creating and dropping the schema. Fixed a few bugs regarding stanza to db translation.
+  * Lighter database schema. Follow request notification.
+  * Refactored email pusher design for batch sending.
+  * Added follow request notification, fixed templates tags.
+  * Added Set Notification Settings stanza.
+  * Added get notification settings stanza.
+  * Added stanzas for several notification methods.
+  * Added Unsubscribe handler and DataSource
+  * First commit: component basic architecture, email templating and welcome email.
+
+ -- Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com>  Sat, 26 Jan 2013 13:44:57 -0300
+
+
+buddycloudpusher (0.1) unstable; urgency=medium
+
+  [ Reginald dude ]
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  [ Reginald Dude ]
+  * Update README.md
+  [ abmargb ]
+  * Added connection retry strategy.
+  * Switch to version 0.5.
+  * Recipes for debian packaging. Ant build script.
+  * Removed consumer properties from configuration.properties
+  * Fixes #4.
+  * Fixes #5.
+  * Fixes #6
+  * Fixes #3.
+  * Fixing notification filtering for following channels.
+  * Updated templates.
+  * Added some logging in the pusher class.
+  * Removed smack hacks.
+  * Implemented message consumer precendence.
+  * Added RSM scrolling to affiliations retrieval.
+  * Fixed signup handler for full jids.
+  * Updated templates.
+  * Refactoring handlers to emulate a loopback connection. Updating them to comply with the latest templates.
+  * Removing separate XMPP connection to consume pusher events. Added message handling to the component itself.
+  * Adding per-context consumers.
+  * Events node consumer.
+  * Adding smack hacks.
+  * Fixes #1 https://github.com/buddycloud/buddycloud-pusher/issues/1
+  * Fixes notification default settings.
+  * Added db commands for creating and dropping the schema. Fixed a few bugs regarding stanza to db translation.
+  * Lighter database schema. Follow request notification.
+  * Refactored email pusher design for batch sending.
+  * Added follow request notification, fixed templates tags.
+  * Added Set Notification Settings stanza.
+  * Added get notification settings stanza.
+  * Added stanzas for several notification methods.
+  * Added Unsubscribe handler and DataSource
+  * First commit: component basic architecture, email templating and welcome email.
+
+ -- Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com>  Sat, 26 Jan 2013 13:51:58 -0300
+
+
+buddycloudpusher (0.1) unstable; urgency=medium
+
+  [ Reginald dude ]
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  * B->buddycloud
+  [ Reginald Dude ]
+  * Update README.md
+  [ abmargb ]
+  * Added connection retry strategy.
+  * Switch to version 0.5.
+  * Recipes for debian packaging. Ant build script.
+  * Removed consumer properties from configuration.properties
+  * Fixes #4.
+  * Fixes #5.
+  * Fixes #6
+  * Fixes #3.
+  * Fixing notification filtering for following channels.
+  * Updated templates.
+  * Added some logging in the pusher class.
+  * Removed smack hacks.
+  * Implemented message consumer precendence.
+  * Added RSM scrolling to affiliations retrieval.
+  * Fixed signup handler for full jids.
+  * Updated templates.
+  * Refactoring handlers to emulate a loopback connection. Updating them to comply with the latest templates.
+  * Removing separate XMPP connection to consume pusher events. Added message handling to the component itself.
+  * Adding per-context consumers.
+  * Events node consumer.
+  * Adding smack hacks.
+  * Fixes #1 https://github.com/buddycloud/buddycloud-pusher/issues/1
+  * Fixes notification default settings.
+  * Added db commands for creating and dropping the schema. Fixed a few bugs regarding stanza to db translation.
+  * Lighter database schema. Follow request notification.
+  * Refactored email pusher design for batch sending.
+  * Added follow request notification, fixed templates tags.
+  * Added Set Notification Settings stanza.
+  * Added get notification settings stanza.
+  * Added stanzas for several notification methods.
+  * Added Unsubscribe handler and DataSource
+  * First commit: component basic architecture, email templating and welcome email.
+
+ -- Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com>  Sun, 27 Jan 2013 03:35:44 -0300
+
+

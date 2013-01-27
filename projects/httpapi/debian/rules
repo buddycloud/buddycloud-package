@@ -1,0 +1,81 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+# Copyright © 2011-2012 Jonas Smedegaard <dr@jones.dk>
+# Description: Main Debian packaging script for buddycloud-server
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+include /usr/share/cdbs/1/rules/upstream-tarball.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+pkg = $(DEB_SOURCE_PACKAGE)
+daemon = $(pkg)
+
+CDBS_BUILD_DEPENDS += , coffeescript
+
+# Needed both at build time and (always) at runtime
+#  * node modules needed at build time to create manpage
+deps = nodejs (>= 0.6.19~dfsg1-3~), node-jsconfig, node-async
+CDBS_BUILD_DEPENDS += , $(deps)
+CDBS_DEPENDS_$(pkg) = $(deps)
+
+# Needed (always/often) at runtime
+node-deps-runtime = node-xmpp node-stringprep node-expat ltx node-uuid
+node-deps-runtime += pg underscore.logger ain2
+CDBS_DEPENDS_$(pkg) += $(patsubst %,$(comma) node-%,$(node-deps-runtime))
+CDBS_DEPENDS_$(pkg) += , lsb-base, adduser
+CDBS_RECOMMENDS_$(pkg) = prosody | ejabberd | jabberd2
+
+DEB_UPSTREAM_URL = https://github.com/buddycloud/$(daemon)/archive
+DEB_UPSTREAM_TARBALL_BASENAME = v$(DEB_UPSTREAM_TARBALL_VERSION)
+DEB_UPSTREAM_TARBALL_MD5 = 58638415c97a08f09099d4637f9848bf
+
+DEB_INSTALL_DOCS_ALL += README.md
+DEB_INSTALL_EXAMPLES_$(pkg) += config.js.example
+
+# Custom config file handling:
+#  * source patched to load config from code dir (not oddly one dir out)
+#  * Add dummy config to support help2man usage from staging area
+build/$(pkg)::
+	npm install
+clean::
+	rm -f *.js
+	rm -rf node_modules
+
+# Install initscript with debhelper to add pre- and postinst routines
+#  * Skip runlevels 0 and 6: faster leaving to internal sysV cleanup
+CDBS_RECOMMENDS_$(pkg) += , logrotate
+DEB_UPDATE_RCD_PARAMS = start 20 2 3 4 5 . stop 20 1 .
+install/$(pkg)::
+	cp -f contrib/buddycloud-http-init 'debian/$(pkg).init'
+clean::
+	rm -f 'debian/$(pkg).init'
+
+#CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
+#CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
+#install/$(pkg)::
+#	install -D -m 0644 postgres/install.sql \
+#		'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/install'
+#    install -D -m 0644 postgres/upgrade-1.sql \
+#        '$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/upgrade-1'
+
+# TODO: drop when using muffin to install
+#verfile=$(cdbs_curdestdir)/usr/share/$(pkg)/main.js
+#binary-post-install/$(pkg)::
+#	perl -i -pe 's/^(\s*version = )require.*/$$1'"'$(DEB_UPSTREAM_VERSION)'"'/' '$(verfile)'
+#	@if ! fgrep -xq '  version = '"'$(DEB_UPSTREAM_VERSION)'" '$(verfile)'; then \
+#		echo "Failed to hardcode version."; \
+#		exit 1; \
+#	fi
