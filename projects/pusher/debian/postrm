@@ -1,0 +1,5 @@
+#!/bin/bash
+
+update-rc.d buddycloud-pusher remove
+
+#DEBHELPER#

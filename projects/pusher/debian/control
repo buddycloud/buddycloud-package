@@ -3,13 +3,13 @@ Section: misc
 Priority: optional
 Maintainer: Abmar Barros (buddycloud Packaging) <abmar@buddycloud.com>
 Build-Depends: debhelper (>= 8), default-jdk, javahelper (>= 0.40ubuntu1) , ant
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: https://buddycloud.org/wiki/Email_and_push
 
 Package: buddycloud-pusher
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}
-Recommends: ${java:Recommends}
+Depends: ${misc:Depends}
+Recommends: 
 Description: Notification pusher for buddycloud
-    buddycloud component responsible for sending out email notifications 
-    regarding activities on the channel server
+ buddycloud component responsible for sending out email notifications 
+ regarding activities on the channel server
