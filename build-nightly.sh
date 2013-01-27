@@ -18,6 +18,8 @@ BUILD_DIR=$CURRENT_DIR/build
 DATE=$(date +%Y%m%d)
 DATE_REPR=$(date -R)
 
+DOWNLOAD_ROOT=/var/web/downloads.buddycloud.com/packages/debian/nightly
+
 for PROJECT_FOLDER in $PROJECTS_DIR/*; do
   
   echo "Processing project $PROJECT_FOLDER"
@@ -90,5 +92,10 @@ ${CHANGELOG}\n\n\
   # Save previous build info
   echo "$REV" > $PROJECT_PATH/prev.rev
   cp $PROJECT_FOLDER/debian/changelog $PROJECT_PATH/changelog.rev
-      
+  
+  # Copy packages to download folder
+  DOWNLOAD_PACKAGE_DIR=$DOWNLOAD_ROOT/$PACKAGE/$SOURCE
+  mkdir -p $DOWNLOAD_PACKAGE_DIR
+  rsync -ad --exclude='*/' $PROJECT_PATH/$SOURCE* $DOWNLOAD_PACKAGE_DIR
+
 done
