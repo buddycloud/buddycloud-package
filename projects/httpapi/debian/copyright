@@ -1,0 +1,34 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: buddycloud-http-api
+Upstream-Contact: Astro <astro@spaceboyz.net>
+ http://github.com/buddycloud/buddycloud-server/issues/
+Source: https://github.com/buddycloud/buddycloud-server/downloads
+ git://github.com/buddycloud/buddycloud-server
+
+Files: *
+Copyright: 2010, Stephan Maka <stephan@spaceboyz.net>
+License: Apache-2
+ buddycloud-server is distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+Comment:
+ On Debian systems the 'Apache License' version 2.0 is located in
+ '/usr/share/common-licenses/Apache-2.0'.
+
+Files: debian/*
+Copyright: 2011, Jonas Smedegaard <dr@jones.dk>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 2, or (at your option) any
+ later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+Comment:
+ On Debian systems the 'GNU General Public License' version 2 is located
+ in '/usr/share/common-licenses/GPL-2'.
+ .
+ You should have received a copy of the 'GNU General Public License'
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.

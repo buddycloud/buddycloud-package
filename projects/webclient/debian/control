@@ -1,0 +1,16 @@
+Source: buddycloud-webclient
+Section: misc
+Priority: optional
+Maintainer: Abmar Barros (buddycloud Nightly Builds) <abmar@buddycloud.com> 
+Uploaders: Rodrigo Duarte <rodrigo@buddycloud.com>
+Build-Depends: debhelper (>= 8), cdbs
+Standards-Version: 3.9.3
+Homepage: https://github.com/buddycloud/webclient
+
+Package: buddycloud-webclient
+Architecture: all
+Depends: ${misc:Depends},
+ ${cdbs:Depends}
+Recommends: apache2
+Description: This is the buddycloud web software for buddycloud. 
+ This software uses the buddycloud HTTP API.

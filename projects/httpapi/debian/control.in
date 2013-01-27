@@ -1,0 +1,24 @@
+Source: buddycloud-http-api
+Section: web
+Priority: optional
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Jonas Smedegaard <dr@jones.dk>
+Build-Depends: @cdbs@
+Standards-Version: 3.9.3
+Homepage: https://github.com/buddycloud/buddycloud-server
+Vcs-Git: git://git.debian.org/git/collab-maint/buddycloud-server
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/buddycloud-server.git
+
+Package: buddycloud-http-api
+Architecture: all
+Pre-Depends: ${cdbs:Pre-Depends}
+Depends: ${misc:Depends},
+ ${cdbs:Depends}
+Recommends: ${cdbs:Recommends}
+Suggests: ${cdbs:Suggests}
+Description: buddycloud channels service for XMPP
+ Node is an event-based server-side JavaScript engine.
+ .
+ buddycloud-server is an XMPP component implemented in Node, providing
+ Buddycloud channels, an open federated social networking protocol from
+ http://open.buddycloud.com/ .

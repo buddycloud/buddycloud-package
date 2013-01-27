@@ -1,0 +1,6 @@
+  * Find cause of memory leak when failing to connect to XMPP server.
+  * Fix SysV script silent at start, and failing to stop.
+  * convince upstream to support lightweight DB backend (e.g. sqlite),
+    and split DB handling into separate binary packages
+  * Debconf'ify all configfile options and integrate dbconfig-common
+    choices, using Config::Model.

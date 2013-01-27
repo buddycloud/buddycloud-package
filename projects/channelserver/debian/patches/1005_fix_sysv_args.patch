@@ -1,0 +1,31 @@
+Description: Adjust sysV init script paths and username
+Author: Jonas Smedegaard <dr@jones.dk>
+Last-Update: 2012-10-23
+
+--- a/_etc_init.d_buddycloud-server
++++ b/_etc_init.d_buddycloud-server
+@@ -20,16 +20,16 @@
+ # PATH should only include /usr/* if it runs after the mountnfs.sh script
+ PATH=/sbin:/usr/sbin:/bin:/usr/bin
+ DESC="buddycloud server"
+-NAME=buddycloud
++NAME=buddycloud-server
+ RUN_AS_USER=buddycloud
+-RUNDIR=/opt/buddycloud-server
+-DAEMON=`which node`
+-DAEMON_ARGS="lib/main.js --config config.js"
+-PIDDIR=/var/run/buddycloud-server
++RUNDIR="/usr/share/$NAME"
++DAEMON=/usr/bin/nodejs
++DAEMON_ARGS="$RUNDIR/main.js --config config.js"
++PIDDIR="/var/run/$NAME"
+ PIDFILE="$PIDDIR/$NAME.pid"
+-SCRIPTNAME=/etc/init.d/$NAME
+-LOGDIR=/var/log/buddycloud-server
+-LOGFILE="$LOGDIR/buddycloud-server.log"
++SCRIPTNAME="/etc/init.d/$NAME"
++LOGDIR="/var/log/$NAME"
++LOGFILE="$LOGDIR/$NAME.log"
+ 
+ # Exit if the package is not installed
+ [ -x "$DAEMON" ] || exit 0

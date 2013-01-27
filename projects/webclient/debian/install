@@ -1,0 +1,2 @@
+build/* /usr/share/buddycloud-webclient/
+build/contrib/apache/buddycloud-apache-virtual-host /etc/apache2/sites-available/

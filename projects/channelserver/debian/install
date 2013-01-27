@@ -1,0 +1,2 @@
+lib/* config.js	/usr/share/buddycloud-server
+debian/config.js	/etc/buddycloud-server

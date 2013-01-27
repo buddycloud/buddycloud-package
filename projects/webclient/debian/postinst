@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# ensure you have the correct modules enabled in Apache
+a2enmod rewrite proxy_http ssl headers expires deflate
+ 
+# enable the virtual host:
+a2ensite buddycloud-apache-virtual-host
+ 
+# and reload Apache with the new configuration
+invoke-rc.d apache2 reload
+
+#DEBHELPER#
