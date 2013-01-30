@@ -23,18 +23,16 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 pkg = $(DEB_SOURCE_PACKAGE)
 daemon = $(pkg)
 
-CDBS_BUILD_DEPENDS += , coffeescript
-
 # Needed both at build time and (always) at runtime
 #  * node modules needed at build time to create manpage
-deps = nodejs (>= 0.6.19~dfsg1-3~), node-jsconfig, node-async
+deps = nodejs (>= 0.6.19~dfsg1-3~), npm, postgresql-server-dev-all
 CDBS_BUILD_DEPENDS += , $(deps)
-CDBS_DEPENDS_$(pkg) = $(deps)
+CDBS_DEPENDS_$(pkg) = nodejs (>= 0.6.19~dfsg1-3~)
 
 # Needed (always/often) at runtime
-node-deps-runtime = node-xmpp node-stringprep node-expat ltx node-uuid
-node-deps-runtime += pg underscore.logger ain2
-CDBS_DEPENDS_$(pkg) += $(patsubst %,$(comma) node-%,$(node-deps-runtime))
+# node-deps-runtime = libnode-node-xmpp libnode-node-stringprep libnode-node-expat
+# node-deps-runtime += libnode-ltx node-node-uuid libnode-pg underscore.logger node-ain2
+# CDBS_DEPENDS_$(pkg) += $(patsubst %,$(comma) %,$(node-deps-runtime))
 CDBS_DEPENDS_$(pkg) += , lsb-base, adduser
 CDBS_RECOMMENDS_$(pkg) = prosody | ejabberd | jabberd2
 
@@ -49,7 +47,7 @@ DEB_INSTALL_EXAMPLES_$(pkg) += config.js.example
 #  * source patched to load config from code dir (not oddly one dir out)
 #  * Add dummy config to support help2man usage from staging area
 build/$(pkg)::
-	coffee -o lib -c src
+	npm install
 	touch lib/config.js
 	cp -a config.js.example config.js
 	perl -p \
@@ -87,8 +85,8 @@ CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
 install/$(pkg)::
 	install -D -m 0644 postgres/install.sql \
 		'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/install'
-#    install -D -m 0644 postgres/upgrade-1.sql \
-#        '$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/upgrade-1'
+	install -D -m 0644 postgres/upgrade-1.sql \
+        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/upgrade-1'
 
 # TODO: drop when using muffin to install
 #verfile=$(cdbs_curdestdir)/usr/share/$(pkg)/main.js
