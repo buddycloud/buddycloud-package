@@ -16,7 +16,7 @@ Vcs-Git: git://git.debian.org/git/collab-maint/buddycloud-server
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/buddycloud-server.git
 
 Package: buddycloud-http-api
-Architecture: all
+Architecture: any
 Pre-Depends: ${cdbs:Pre-Depends}
 Depends: ${misc:Depends},
  ${cdbs:Depends}

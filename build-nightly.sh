@@ -87,8 +87,15 @@ ${CHANGELOG}\n\n\
   rsync -a $PROJECT_FOLDER/debian .
   
   # Building debian package
-  debuild
-  
+  if [ "${BUILD_ARCH}" == "all" ]; then
+    debuild
+  else
+    IFS=',' read -ra ARCHS <<< "${BUILD_ARCH}"
+    for ARCH in "${ARCHS[@]}"; do
+      debuild -a${ARCH} || true
+    done
+  fi 
+    
   # Save previous build info
   echo "$REV" > $PROJECT_PATH/prev.rev
   cp $PROJECT_FOLDER/debian/changelog $PROJECT_PATH/changelog.rev
@@ -96,6 +103,6 @@ ${CHANGELOG}\n\n\
   # Copy packages to download folder
   DOWNLOAD_PACKAGE_DIR=$DOWNLOAD_ROOT/$PACKAGE/$SOURCE
   mkdir -p $DOWNLOAD_PACKAGE_DIR
-  rsync -a $PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}* $DOWNLOAD_PACKAGE_DIR
+  rsync -a $PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}* $DOWNLOAD_PACKAGE_DIR --exclude=*.build
 
 done

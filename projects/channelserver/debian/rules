@@ -69,6 +69,7 @@ build/$(pkg)::
 	fi
 clean::
 	rm -rf lib
+	rm -rf node_modules
 	rm -f config.js debian/config.js
 
 # Install initscript with debhelper to add pre- and postinst routines

@@ -1,5 +1,6 @@
 PROJECT_NAME=buddycloud-webclient
 PACKAGE=buddycloud-webclient
 GIT_URL=https://github.com/buddycloud/webclient.git
-DIST_VERSION=0.1
+DIST_VERSION=0.9
 DIST=unstable
+BUILD_ARCH="all"

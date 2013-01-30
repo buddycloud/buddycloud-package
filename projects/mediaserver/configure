@@ -3,3 +3,4 @@ PACKAGE=buddycloud-media-server
 GIT_URL=https://github.com/buddycloud/buddycloud-media-server.git
 DIST_VERSION=0.1
 DIST=unstable
+BUILD_ARCH=all

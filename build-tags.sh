@@ -83,7 +83,14 @@ ${CHANGELOG}\n\n\
       cp $PROJECT_PATH/changelog debian/changelog
       
       # Building debian package
-      debuild
+      if [ "${BUILD_ARCH}" == "all" ]; then
+        debuild
+      else
+        IFS=',' read -ra ARCHS <<< "${BUILD_ARCH}"
+        for ARCH in "${ARCHS[@]}"; do
+          debuild -a${ARCH} || true
+        done
+      fi
       
       # Copy packages to download folder
       DOWNLOAD_PACKAGE_DIR=$DOWNLOAD_ROOT/$PACKAGE/$SOURCE
