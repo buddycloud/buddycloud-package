@@ -3,3 +3,4 @@ PACKAGE=buddycloud-server
 GIT_URL=https://github.com/buddycloud/buddycloud-server.git
 DIST_VERSION=0.1
 DIST=unstable
+BUILD_ARCH="amd64,i386"

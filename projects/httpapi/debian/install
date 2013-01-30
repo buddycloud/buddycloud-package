@@ -1,5 +1,6 @@
 contrib/ /usr/share/buddycloud-http-api/
 node_modules/ /usr/share/buddycloud-http-api/
 src/ /usr/share/buddycloud-http-api/
-test/ /usr/share/buddycloud-http-api/
-config.js.example	/usr/share/buddycloud-http-api/config.js
+config.js	/usr/share/buddycloud-http-api/
+server.js   /usr/share/buddycloud-http-api/
+README*.md  /usr/share/buddycloud-http-api/
