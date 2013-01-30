@@ -46,6 +46,9 @@ clean::
 	rm -rf node_modules
 	rm -rf config.js
 
+DEB_DH_STRIP_ARGS=--no-act
+DEB_STRIP_EXCLUDE=*.*
+
 # Install initscript with debhelper to add pre- and postinst routines
 #  * Skip runlevels 0 and 6: faster leaving to internal sysV cleanup
 CDBS_RECOMMENDS_$(pkg) += , logrotate
