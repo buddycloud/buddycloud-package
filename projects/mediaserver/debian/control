@@ -1,4 +1,4 @@
-Source: buddycloudmediaserver
+Source: buddycloud-media-server
 Section: misc
 Priority: optional
 Maintainer: Rodrigo Duarte <rodrigo@buddycloud.com>
@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 8), default-jdk, javahelper (>= 0.40ubuntu1) , mave
 Standards-Version: 3.9.2
 Homepage: <homepage>
 
-Package: buddycloudmediaserver
+Package: buddycloud-media-server
 Architecture: all
 Depends: ${java:Depends}, ${misc:Depends}
 Recommends: ${java:Recommends}
