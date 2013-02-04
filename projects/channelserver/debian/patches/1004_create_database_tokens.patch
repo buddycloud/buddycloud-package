@@ -1,0 +1,19 @@
+Description: Create database tokens for dbconfig
+Author: Abmar Barros <abmar@buddycloud.com>
+Last-Update: 2013-01-30
+
+--- a/config.js.example
++++ b/config.js.example
+@@ -22,9 +22,9 @@
+ exports.modelConfig = {
+     host: 'localhost',
+     port: 5432,
+-    database: 'buddycloud-server',
+-    user: 'buddycloud-server',
+-    password: 'tellnoone',
++    database: '#DATABASE_NAME#',
++    user: '#DATABASE_USER#',
++    password: '#DATABASE_PASSWORD#',
+     poolSize: 4
+ };
+
