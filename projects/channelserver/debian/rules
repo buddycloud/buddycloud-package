@@ -48,29 +48,15 @@ DEB_INSTALL_EXAMPLES_$(pkg) += config.js.example
 #  * Add dummy config to support help2man usage from staging area
 build/$(pkg)::
 	npm install
-	touch lib/config.js
 	cp -a config.js.example config.js
-	perl -p \
-		-e 's,^(    file: "/var/log/).*(\.log")$$,$$1$(pkg)/$(daemon)$$2,;' \
-		-e 's|^(    host: '"'"')localhost('"'"',)$$|$$1/var/run/postgresql$$2|;' \
-		-e 's|^(    password: '"'"')tellnoone('"'"',)$$|$$1$$2|;' \
-		config.js.example > debian/config.js
-	@if ! fgrep -xq '    file: "/var/log/$(pkg)/$(daemon).log"' debian/config.js; then \
-		echo "Failed to adjust logfile setting in debian/config.js."; \
-		exit 1; \
-	fi
-	@if ! fgrep -xq '    host: '"'"'/var/run/postgresql'"'"',' debian/config.js; then \
-		echo "Failed to adjust host setting in debian/config.js."; \
-		exit 1; \
-	fi
-	@if ! fgrep -xq '    password: '"''"',' debian/config.js; then \
-		echo "Failed to adjust password setting in debian/config.js."; \
-		exit 1; \
-	fi
+	sed -i "s|/var/log/buddycloud-server.log|/var/log/$(pkg)/$(daemon).log|g" config.js 
 clean::
 	rm -rf lib
 	rm -rf node_modules
-	rm -f config.js debian/config.js
+	rm -rf config.js
+
+DEB_DH_STRIP_ARGS=--no-act
+DEB_STRIP_EXCLUDE=*.*
 
 # Install initscript with debhelper to add pre- and postinst routines
 #  * Skip runlevels 0 and 6: faster leaving to internal sysV cleanup
@@ -85,15 +71,6 @@ CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
 CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
 install/$(pkg)::
 	install -D -m 0644 postgres/install.sql \
-		'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/install'
-	install -D -m 0644 postgres/upgrade-1.sql \
-        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/postgres/upgrade-1'
-
-# TODO: drop when using muffin to install
-#verfile=$(cdbs_curdestdir)/usr/share/$(pkg)/main.js
-#binary-post-install/$(pkg)::
-#	perl -i -pe 's/^(\s*version = )require.*/$$1'"'$(DEB_UPSTREAM_VERSION)'"'/' '$(verfile)'
-#	@if ! fgrep -xq '  version = '"'$(DEB_UPSTREAM_VERSION)'" '$(verfile)'; then \
-#		echo "Failed to hardcode version."; \
-#		exit 1; \
-#	fi
+		'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/pgsql'
+	cat postgres/upgrade-*.sql >> \
+        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server/install/pgsql'

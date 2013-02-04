@@ -17,4 +17,11 @@ if [ "$1" = "configure" ]; then
 		buddycloud
 fi
 
+mkdir -p "/var/log/$pkg"
+chown -R buddycloud:buddycloud "/var/log/$pkg" 
+
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /etc/$pkg/config.js
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /etc/$pkg/config.js
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /etc/$pkg/config.js
+
 #DEBHELPER#
