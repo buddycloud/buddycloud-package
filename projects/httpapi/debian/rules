@@ -57,12 +57,3 @@ install/$(pkg)::
 	cp -f contrib/buddycloud-http-init 'debian/$(pkg).init'
 clean::
 	rm -f 'debian/$(pkg).init'
-
-# TODO: drop when using muffin to install
-#verfile=$(cdbs_curdestdir)/usr/share/$(pkg)/main.js
-#binary-post-install/$(pkg)::
-#	perl -i -pe 's/^(\s*version = )require.*/$$1'"'$(DEB_UPSTREAM_VERSION)'"'/' '$(verfile)'
-#	@if ! fgrep -xq '  version = '"'$(DEB_UPSTREAM_VERSION)'" '$(verfile)'; then \
-#		echo "Failed to hardcode version."; \
-#		exit 1; \
-#	fi

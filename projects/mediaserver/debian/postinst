@@ -27,9 +27,9 @@ mkdir -p /etc/buddycloud-media-server/storage
 dbc_pgsql_createdb_encoding="UTF8"
 dbc_go "$pkg" "$@"
 
-sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /etc/$pkg/mediaserver.properties
-sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /etc/$pkg/mediaserver.properties
-sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /etc/$pkg/mediaserver.properties
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/mediaserver.properties
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/mediaserver.properties
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/mediaserver.properties
 
 # Creates log dir
 mkdir -p "/var/log/$pkg"
