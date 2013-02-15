@@ -1,0 +1,20 @@
+Description: Updates log location
+Author: Abmar Barros <abmar@buddycloud.com>
+Last-Update: 2013-02-14
+
+--- a/logback.xml	2013-02-14 16:10:06.000000000 +0100
++++ b/logback.xml	2013-02-15 03:25:55.535622561 +0100
+@@ -9,11 +9,11 @@
+   </appender>
+ 
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+-    <file>logs/mediaserver.log</file>
++    <file>/var/log/buddycloud-media-server/mediaserver.log</file>
+ 
+     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+       <!-- daily rollover -->
+-      <fileNamePattern>logs/mediaserver.%d{yyyy-MM-dd}.log</fileNamePattern>
++      <fileNamePattern>/var/log/buddycloud-media-server/mediaserver.%d{yyyy-MM-dd}.log</fileNamePattern>
+ 
+       <!-- keep 30 days' worth of history -->
+       <maxHistory>30</maxHistory>

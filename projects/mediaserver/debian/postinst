@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -e
+pkg=buddycloud-media-server
+
+# Generates keystore for jetty
+if [ ! -f /usr/share/buddycloud-media-server/jetty.jks ]; then
+    keytool -genkeypair -alias key -dname "CN=$(hostname), O=buddycloud" -keypass password \
+        -storepass password -keystore /usr/share/buddycloud-media-server/jetty.jks
+fi
+
+# Adds buddycloud user
+if [ "$1" = "configure" ]; then
+    adduser --system --quiet --group --disabled-password \
+        --gecos "buddycloud sys account" \
+        --no-create-home --home "/var/run/$pkg" \
+        buddycloud
+fi
+
+# Creates media storage folder
+mkdir -p /etc/buddycloud-media-server/storage
+
+# Creates and populates the database
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_pgsql_createdb_encoding="UTF8"
+dbc_go "$pkg" "$@"
+
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /etc/$pkg/mediaserver.properties
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /etc/$pkg/mediaserver.properties
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /etc/$pkg/mediaserver.properties
+
+# Creates log dir
+mkdir -p "/var/log/$pkg"
+chown -R buddycloud:buddycloud "/var/log/$pkg" 
+
+# Installs buddycloud init.d script
+update-rc.d buddycloud-media-server defaults
+
+#DEBHELPER#
