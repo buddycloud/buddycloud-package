@@ -1,0 +1,2 @@
+/usr/share/buddycloud-media-server/mediaserver.properties	/etc/buddycloud-media-server/mediaserver.properties
+/usr/share/dbconfig-common/data/buddycloud-media-server/install/postgres/install  /usr/share/doc/buddycloud-media-server/examples/install.sql
