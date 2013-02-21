@@ -18,7 +18,8 @@ if [ "$1" = "configure" ]; then
 fi
 
 # Creates media storage folder
-mkdir -p /etc/buddycloud-media-server/storage
+mkdir -p "/etc/$pkg/storage"
+chown -R buddycloud:buddycloud "/etc/$pkg"
 
 # Creates and populates the database
 . /usr/share/debconf/confmodule
