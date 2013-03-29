@@ -25,5 +25,6 @@ pkg = $(DEB_SOURCE_PACKAGE)
 build/$(pkg):: 
 	mkdir -p build
 	rsync -av . build/ --exclude=debian --exclude=.gitignore
+	cp config.js.example build/config.js
 clean::
-	rm -f 'build'
+	rm -rf 'build'
