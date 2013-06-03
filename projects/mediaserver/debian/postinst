@@ -28,6 +28,7 @@ chown -R buddycloud:buddycloud "/etc/$pkg"
 dbc_pgsql_createdb_encoding="UTF8"
 dbc_go "$pkg" "$@"
 
+cp /usr/share/$pkg/mediaserver.properties.example /usr/share/$pkg/mediaserver.properties
 sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/mediaserver.properties
 sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/mediaserver.properties
 sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/mediaserver.properties
