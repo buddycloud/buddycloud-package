@@ -20,8 +20,10 @@ DATE_REPR=$(date -R)
 
 DOWNLOAD_ROOT=/var/web/downloads.buddycloud.com/packages/debian/nightly
 
-for PROJECT_FOLDER in $PROJECTS_DIR/*; do
-  
+function process {
+
+  PROJECT_FOLDER=$1
+
   echo "Processing project $PROJECT_FOLDER"
   source $PROJECT_FOLDER/configure
   
@@ -105,4 +107,13 @@ ${CHANGELOG}\n\n\
   mkdir -p $DOWNLOAD_PACKAGE_DIR
   rsync -a $PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}* $DOWNLOAD_PACKAGE_DIR --exclude=*.build
 
+}
+
+if [ $# -ne 0 ]; then
+  process $1
+  exit
+fi
+
+for PROJECT_FOLDER_PATH in $PROJECTS_DIR/*; do
+  process $PROJECT_FOLDER_PATH    
 done
