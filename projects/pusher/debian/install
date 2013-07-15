@@ -2,6 +2,6 @@ lib usr/share/buddycloud-pusher
 resources/schema usr/share/buddycloud-pusher
 templates usr/share/buddycloud-pusher
 README.md usr/share/buddycloud-pusher
-configuration.properties usr/share/buddycloud-pusher
+configuration.properties.example usr/share/buddycloud-pusher
 target/buddycloudpusher-*.jar usr/share/buddycloud-pusher/lib
 resources/init.d/buddycloud-pusher etc/init.d
