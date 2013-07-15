@@ -2,7 +2,7 @@ Source: buddycloud-pusher
 Section: misc
 Priority: optional
 Maintainer: Abmar Barros (buddycloud Packaging) <abmar@buddycloud.com>
-Build-Depends: debhelper (>= 8), default-jdk, javahelper (>= 0.40ubuntu1) , ant
+Build-Depends: debhelper (>= 8), default-jdk, cdbs, ant
 Standards-Version: 3.9.3
 Homepage: https://buddycloud.org/wiki/Email_and_push
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp /usr/share/buddycloud-pusher/configuration.properties.example /usr/share/buddycloud-pusher/configuration.properties
+mv /usr/share/buddycloud-pusher/configuration.properties.example /usr/share/buddycloud-pusher/configuration.properties
 update-rc.d buddycloud-pusher defaults
 
 #DEBHELPER#
