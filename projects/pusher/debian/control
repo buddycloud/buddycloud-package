@@ -8,8 +8,11 @@ Homepage: https://buddycloud.org/wiki/Email_and_push
 
 Package: buddycloud-pusher
 Architecture: all
-Depends: ${misc:Depends}
-Recommends: 
+Pre-Depends: ${cdbs:Pre-Depends}
+Depends: ${misc:Depends},
+ ${cdbs:Depends}
+Recommends: ${cdbs:Recommends}
+Suggests: ${cdbs:Suggests}
 Description: Notification pusher for buddycloud
  buddycloud component responsible for sending out email notifications 
  regarding activities on the channel server

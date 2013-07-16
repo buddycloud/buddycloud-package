@@ -27,3 +27,9 @@ build/$(pkg)::
 	ant build
 clean::
 	rm -rf target
+
+CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
+CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
+install/$(pkg)::
+	install -D -m 0644 resources/schema/create-schema.sql \
+	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-pusher/install/pgsql'
