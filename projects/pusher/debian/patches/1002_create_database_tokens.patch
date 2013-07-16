@@ -1,0 +1,15 @@
+Description: Create database tokens for dbconfig
+Author: Abmar Barros <abmar@buddycloud.com>
+Last-Update: 2013-02-14
+
+--- a/configuration.properties.example	2013-02-14 16:10:06.000000000 +0100
++++ b/configuration.properties.example	2013-02-14 16:01:53.862662029 +0100
+@@ -5,7 +5,7 @@
+ xmpp.secretkey=secret
+ 
+ # JDBC
+-jdbc.url=jdbc:postgresql://localhost:5432/buddycloud-pusher?user=postgres&password=postgresql
++jdbc.url=jdbc:postgresql://localhost:5432/#DATABASE_NAME#?user=#DATABASE_USER#&password=#DATABASE_PASSWORD#
+ 
+ # channel server jid
+ channel.server=buddycloud.example.com

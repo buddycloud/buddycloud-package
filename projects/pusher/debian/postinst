@@ -1,6 +1,21 @@
 #!/bin/bash
 
-mv /usr/share/buddycloud-pusher/configuration.properties.example /usr/share/buddycloud-pusher/configuration.properties
+set -e
+pkg=buddycloud-pusher
+
+# Creates and populates the database
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_pgsql_createdb_encoding="UTF8"
+dbc_go "$pkg" "$@"
+
+mv /usr/share/$pkg/configuration.properties.example /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/configuration.properties
+
+# Updated initialization scripts
 update-rc.d buddycloud-pusher defaults
 
 #DEBHELPER#
