@@ -10,7 +10,7 @@ Last-Update: 2013-01-30
  RUN_AS_USER=buddycloud
 -RUNDIR=/opt/buddycloud-server
 +RUNDIR=/usr/share/buddycloud-server
- DAEMON=`which node`
+ DAEMON=`which nodejs`
 -DAEMON_ARGS="lib/main.js --config config.js"
 +DAEMON_ARGS="main.js --config /etc/buddycloud-server/config.js"
  PIDDIR=/var/run/buddycloud-server
