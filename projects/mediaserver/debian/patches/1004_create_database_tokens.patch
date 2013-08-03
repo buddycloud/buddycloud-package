@@ -2,8 +2,8 @@ Description: Create database tokens for dbconfig
 Author: Abmar Barros <abmar@buddycloud.com>
 Last-Update: 2013-02-14
 
---- a/mediaserver.properties	2013-02-14 16:10:06.000000000 +0100
-+++ b/mediaserver.properties	2013-02-14 16:01:53.862662029 +0100
+--- a/mediaserver.properties.example	2013-02-14 16:10:06.000000000 +0100
++++ b/mediaserver.properties.example	2013-02-14 16:01:53.862662029 +0100
 @@ -5,7 +5,7 @@
  http.port=8080
  https.port=8443
@@ -13,7 +13,7 @@ Last-Update: 2013-02-14
  https.keystore.type=JKS
  https.keystore.password=password
  https.key.password=password
-@@ -26,9 +26,9 @@
+@@ -26,11 +26,11 @@
  bc.channels.server=channels.buddycloud.org
  
  # JDBC
@@ -24,4 +24,6 @@ Last-Update: 2013-02-14
  # File System
 -media.storage.root=/tmp
 +media.storage.root=/usr/share/buddycloud-media-server/storage
- media.sizelimit=1048576
+ 
+ # Max filesize in bytes
+ media.sizelimit=100000000
