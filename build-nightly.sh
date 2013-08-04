@@ -35,6 +35,8 @@ function process {
   # Updating git folder
   if [ -d "$GIT_PATH" ]; then
     cd $GIT_PATH
+    git clean -xdf
+    git reset --hard
     git pull
   else
     git clone $GIT_URL $GIT_PATH
@@ -51,15 +53,15 @@ function process {
   
   DEB_CREATED=$(ls $PROJECT_NAME*.git.$REV*.deb || true)
   if [ -z "$DEB_CREATED" ]; then
+    echo "Last build failed, building again."
     OPT_FORCE=true
   fi
   
   if [ "$REV" == "$REV_PREV" ]; then
-    echo "No need to build!"
     if [ -z "$OPT_FORCE" ]; then
+      echo "Last build successful. No need to build!"
       exit
     fi
-    echo "> ignoring..."
     CHANGELOG="  * : No changes"
   else
     # convert svn changelog into deb changelog.
@@ -73,11 +75,7 @@ function process {
   SOURCE="${PACKAGE}-${BUILD_VERSION}"
   ORIG_TGZ="${PACKAGE}_${BUILD_VERSION}.orig.tar.gz"
   echo "Building orig.tar.gz ..."
-  if [ ! -f "../${ORIG_TGZ}" ]; then
-    git archive --format=tar "--prefix=${SOURCE}/" "${REV}" | gzip >"../${ORIG_TGZ}"
-  else
-    echo "> already exists - skipping ..."
-  fi
+  git archive --format=tar "--prefix=${SOURCE}/" "${REV}" | gzip >"../${ORIG_TGZ}"
   
   echo -e "${PACKAGE} (${DIST_REVISION}) ${DIST}; urgency=low\n\n\
 ${CHANGELOG}\n\n\
@@ -121,5 +119,5 @@ if [ $# -ne 0 ]; then
 fi
 
 for PROJECT_FOLDER_PATH in $PROJECTS_DIR/*; do
-  process $PROJECT_FOLDER_PATH    
+  process $PROJECT_FOLDER_PATH
 done
