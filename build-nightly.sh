@@ -51,7 +51,7 @@ function process {
   
   REV_PREV="$(cat ../prev.rev)"
   
-  DEB_CREATED=$(ls $PROJECT_NAME*.git.$REV*.deb || true)
+  DEB_CREATED=$(ls ../$PROJECT_NAME*.git.$REV*.deb || true)
   if [ -z "$DEB_CREATED" ]; then
     echo "Last build failed, building again."
     OPT_FORCE=true
