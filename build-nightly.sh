@@ -49,10 +49,15 @@ function process {
   
   REV_PREV="$(cat ../prev.rev)"
   
+  DEB_CREATED=$(ls $PROJECT_NAME*.git.$REV*.deb || true)
+  if [ -z "$DEB_CREATED" ]; then
+    OPT_FORCE=true
+  fi
+  
   if [ "$REV" == "$REV_PREV" ]; then
     echo "No need to build!"
     if [ -z "$OPT_FORCE" ]; then
-      continue;
+      exit
     fi
     echo "> ignoring..."
     CHANGELOG="  * : No changes"
@@ -90,11 +95,13 @@ ${CHANGELOG}\n\n\
   
   # Building debian package
   if [ "${BUILD_ARCH}" == "all" ]; then
-    debuild
+    LOGFILE=$PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}_${BUILD_ARCH}.log
+    debuild | tee $LOGFILE
   else
     IFS=',' read -ra ARCHS <<< "${BUILD_ARCH}"
     for ARCH in "${ARCHS[@]}"; do
-      debuild -a${ARCH} || true
+      LOGFILE=$PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}_${ARCH}.log
+      debuild -a${ARCH} | tee $LOGFILE || true 
     done
   fi 
     
@@ -106,7 +113,6 @@ ${CHANGELOG}\n\n\
   DOWNLOAD_PACKAGE_DIR=$DOWNLOAD_ROOT/$PACKAGE/$SOURCE
   mkdir -p $DOWNLOAD_PACKAGE_DIR
   rsync -a $PROJECT_PATH/${PACKAGE}_${BUILD_VERSION}* $DOWNLOAD_PACKAGE_DIR --exclude=*.build
-
 }
 
 if [ $# -ne 0 ]; then
