@@ -61,7 +61,7 @@ function process {
   if [ "$REV" == "$REV_PREV" ]; then
     if [ -z "$OPT_FORCE" ]; then
       echo "Last build successful. No need to build!"
-      exit
+      return
     fi
     CHANGELOG="  * : No changes"
   else
