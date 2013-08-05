@@ -54,6 +54,7 @@ function process {
   DEB_CREATED=$(ls ../$PROJECT_NAME*.git.$REV*.deb || true)
   if [ -z "$DEB_CREATED" ]; then
     echo "Last build failed, building again."
+    rm -rf ../$PROJECT_NAME*.git.$REV* || true 
     OPT_FORCE=true
   fi
   
