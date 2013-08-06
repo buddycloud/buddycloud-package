@@ -1,0 +1,19 @@
+Description: Updates log location
+Author: Abmar Barros <abmar@buddycloud.com>
+Last-Update: 2013-02-14
+
+--- a/log4j.properties.example	2013-02-14 16:10:06.000000000 +0100
++++ b/log4j.properties.example	2013-02-15 03:25:55.535622561 +0100
+@@ -1,10 +1,10 @@
+-log4j.rootLogger=DEBUG, CONSOLE
++log4j.rootLogger=INFO, FILE
+ 
+ log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+ log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+ log4j.appender.CONSOLE.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
+ 
+ log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+ log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+ log4j.appender.FILE.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
+-log4j.appender.FILE.File=logs/log
++log4j.appender.FILE.File=/var/log/buddycloud-server-java/log

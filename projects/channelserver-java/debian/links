@@ -1,0 +1,2 @@
+/usr/share/buddycloud-server-java/configuration.properties	/etc/buddycloud-server-java/configuration.properties
+/usr/share/dbconfig-common/data/buddycloud-server-java/install/postgres/install  /usr/share/doc/buddycloud-server-java/examples/install.sql

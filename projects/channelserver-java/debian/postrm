@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+pkg=buddycloud-server-java
+
+if [ -f /usr/share/debconf/confmodule ]; then
+	. /usr/share/debconf/confmodule
+fi
+if [ -f /usr/share/dbconfig-common/dpkg/postrm.pgsql  ]; then
+	. /usr/share/dbconfig-common/dpkg/postrm.pgsql
+	dbc_go "$pkg" "$@" || true
+fi
+
+if [ "$1" = "purge" ]; then
+	rm -rf "/var/log/$pkg/"
+	rmdir "/var/run/$pkg" || true
+fi
+
+update-rc.d buddycloud-server-java remove
+
+#DEBHELPER#

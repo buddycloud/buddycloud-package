@@ -1,0 +1,19 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: buddycloud-server-java
+Upstream-Contact: Lloyd Watkin <lloyd@evilprofessor.co.uk>
+ http://github.com/buddycloud/buddycloud-server-java/issues/
+Source: https://github.com/buddycloud/buddycloud-server-java/downloads
+ git://github.com/buddycloud/buddycloud-server-java
+
+Files: *
+Copyright: Copyright 2013 Lloyd Watkin <lloyd@evilprofessor.co.uk>
+License: Apache-2
+ buddycloud-media-server is distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+
+Files: debian/*
+Copyright: Copyright 2013 Abmar Barros <abmar@buddycloud.com>
+License: Apache-2
+ buddycloud-media-server debian files are distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+

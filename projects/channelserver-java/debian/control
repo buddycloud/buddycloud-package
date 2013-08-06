@@ -1,0 +1,19 @@
+Source: buddycloud-server-java
+Section: misc
+Priority: optional
+Maintainer: Lloyd Watkin <lloyd@evilprofessor.co.uk>
+Build-Depends: debhelper (>= 8), default-jdk, cdbs, maven2
+Standards-Version: 3.9.2
+Homepage: https://github.com/buddycloud/buddycloud-server-java
+
+Package: buddycloud-server-java
+Architecture: all
+Pre-Depends: ${cdbs:Pre-Depends}
+Depends: ${misc:Depends},
+ ${cdbs:Depends}
+Recommends: ${cdbs:Recommends}
+Suggests: ${cdbs:Suggests}
+Description: buddycloud channels service for XMPP
+ buddycloud-server-java is an XMPP component implemented in Java, providing
+ Buddycloud channels, an open federated social networking protocol from
+ http://buddycloud.com/ .

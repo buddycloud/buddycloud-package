@@ -1,0 +1,2 @@
+target/channelserver-*-jar-with-dependencies.jar usr/share/buddycloud-server-java
+contrib/init.d/buddycloud-server-java etc/init.d
