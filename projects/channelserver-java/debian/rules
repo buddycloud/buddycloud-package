@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+# Copyright © 2013 Abmar Barros <abmar@buddycloud.com>
+# Description: Main Debian packaging script for buddycloud-server-java
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+pkg = $(DEB_SOURCE_PACKAGE)
+daemon = $(pkg)
+
+# Needed both at build time and (always) at runtime
+#  * node modules needed at build time to create manpage
+CDBS_DEPENDS_$(pkg) = lsb-base, adduser
+CDBS_RECOMMENDS_$(pkg) = prosody | ejabberd | jabberd2
+
+DEB_INSTALL_DOCS_ALL += README.md
+
+# Custom config file handling:
+#  * source patched to load config from code dir (not oddly one dir out)
+#  * Add dummy config to support help2man usage from staging area
+build/$(pkg)::
+	mvn package -Dmaven.test.skip=true -Duser.home=/tmp/$(pkg)
+clean::
+	rm -rf target
+
+CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
+CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
+install/$(pkg)::
+	install -D -m 0644 postgres/install.sql \
+        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server-java/install/pgsql'
+	cat postgres/upgrade-*.sql >> \
+            	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server-java/install/pgsql'

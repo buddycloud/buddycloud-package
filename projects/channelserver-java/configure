@@ -1,0 +1,6 @@
+PROJECT_NAME=buddycloud-server-java
+PACKAGE=buddycloud-server-java
+GIT_URL=https://github.com/buddycloud/buddycloud-server-java.git
+DIST_VERSION=0.1
+DIST=unstable
+BUILD_ARCH="all"

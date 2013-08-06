@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+pkg=buddycloud-server-java
+
+# Adds buddycloud user
+if [ "$1" = "configure" ]; then
+    adduser --system --quiet --group --disabled-password \
+        --gecos "buddycloud sys account" \
+        --no-create-home --home "/var/run/buddycloud" \
+        buddycloud
+fi
+
+# Creates and gives permissions to data folders
+chown -R buddycloud:buddycloud "/etc/$pkg"
+
+# Creates and populates the database
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_pgsql_createdb_encoding="UTF8"
+dbc_go "$pkg" "$@"
+
+cp /usr/share/$pkg/configuration.properties.example /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/configuration.properties
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/configuration.properties
+
+# Creates log dir
+mkdir -p "/var/log/$pkg"
+chown -R buddycloud:buddycloud "/var/log/$pkg" 
+cp /usr/share/$pkg/log4j.properties.example /usr/share/$pkg/log4j.properties
+
+# Installs buddycloud init.d script
+update-rc.d buddycloud-server-java defaults
+
+#DEBHELPER#
