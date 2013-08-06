@@ -17,6 +17,9 @@ if [ "$1" = "purge" ]; then
 	rmdir "/var/run/$pkg" || true
 fi
 
-update-rc.d buddycloud-server-java remove
+update-rc.d -f buddycloud-server-java remove
+
+# Remove properties
+rm -rf /usr/share/$pkg/*.properties
 
 #DEBHELPER#

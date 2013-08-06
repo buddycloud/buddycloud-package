@@ -10,7 +10,7 @@ Last-Update: 2013-08-06
 -jdbc.proxool.driver-class=org.hsqldb.jdbcDriver
 +jdbc.proxool.driver-class=org.postgresql.Driver
 -jdbc.user=username
-+jdbc.user=#DATABASE_USER
++jdbc.user=#DATABASE_USER#
 -jdbc.password=password
 +jdbc.password=#DATABASE_PASSWORD#
  jdbc.proxool.maximum-connection-count=10
