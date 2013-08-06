@@ -1,2 +1,4 @@
 target/channelserver-*-jar-with-dependencies.jar usr/share/buddycloud-server-java
+configuration.properties.example usr/share/buddycloud-server-java
+log4j.properties.example usr/share/buddycloud-server-java
 contrib/init.d/buddycloud-server-java etc/init.d
