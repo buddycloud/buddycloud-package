@@ -4,11 +4,12 @@ Last-Update: 2013-08-06
 
 --- a/configuration.properties.example	2013-08-06 16:00:06.000000000 +0100
 +++ b/configuration.properties.example	2013-08-06 16:01:53.862662029 +0100
-@@ -9,6 +9,6 @@
+@@ -9,7 +9,7 @@
 -jdbc.proxool.driver-url=jdbc:hsqldb:.
 +jdbc.proxool.driver-url=jdbc:postgresql://localhost:5432/#DATABASE_NAME#
 -jdbc.proxool.driver-class=org.hsqldb.jdbcDriver
 +jdbc.proxool.driver-class=org.postgresql.Driver
+ jdbc.proxool.alias=buddycloud
 -jdbc.user=username
 +jdbc.user=#DATABASE_USER#
 -jdbc.password=password
