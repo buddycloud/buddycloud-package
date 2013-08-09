@@ -56,6 +56,8 @@ function process {
     echo "Last build failed, building again."
     rm -rf ../$PROJECT_NAME*.git.$REV* || true 
     OPT_FORCE=true
+  else
+    unset OPT_FORCE
   fi
   
   if [ "$REV" == "$REV_PREV" ]; then
