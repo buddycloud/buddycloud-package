@@ -23,8 +23,12 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 pkg = $(DEB_SOURCE_PACKAGE)
 
 build/$(pkg):: 
+	npm install
+	cp config.js.example config.js
+	grunt build
 	mkdir -p build
-	rsync -av . build/ --exclude=build --exclude=debian --exclude=.gitignore
-	cp config.js.example build/config.js
+	rsync -av . build/ --exclude=build --exclude=debian \
+	   --exclude=.gitignore --exclude=node_modules
+	rm -rf build/js/app build/css/main.css
 clean::
 	rm -rf 'build'
