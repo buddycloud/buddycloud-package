@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Abmar Barros (buddycloud Packaging) <abmar@buddycloud.com> 
 Uploaders: Rodrigo Duarte <rodrigo@buddycloud.com>
-Build-Depends: debhelper (>= 8), cdbs
+Build-Depends: debhelper (>= 8), cdbs, npm
 Standards-Version: 3.9.3
 Homepage: https://github.com/buddycloud/webclient
 
