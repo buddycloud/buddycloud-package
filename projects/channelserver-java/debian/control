@@ -2,7 +2,7 @@ Source: buddycloud-server-java
 Section: misc
 Priority: optional
 Maintainer: Lloyd Watkin <lloyd@evilprofessor.co.uk>
-Build-Depends: debhelper (>= 8), default-jdk, cdbs, maven
+Build-Depends: debhelper (>= 8), default-jre (>=1.6) | java6-runtime, cdbs, maven
 Standards-Version: 3.9.2
 Homepage: https://github.com/buddycloud/buddycloud-server-java
 
