@@ -17,5 +17,5 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-server-java.deb
 
 # run java-server
 ENTRYPOINT cd /usr/share/buddycloud-server-java; /usr/bin/java -jar channel-server-with-dependencies.jar
-# EXPOSE 5222:5222 5223:5223 5269:5269 5280:5280 5290:5290 5555:5555
+# EXPOSE 5222:5222 5269:5269 5280:5280 5290:5290 5555:5555
 
