@@ -1,2 +1,2 @@
-target/buddycloud-media-server-0.1/buddycloud-media-server/* usr/share/buddycloud-media-server
+target/buddycloud-media-server-1.0/buddycloud-media-server/* usr/share/buddycloud-media-server
 contrib/init.d/buddycloud-media-server etc/init.d
