@@ -1,0 +1,45 @@
+From 6a6479992d4a0f1a13024b217a726e980af93774 Mon Sep 17 00:00:00 2001
+From: rodrigods <rodrigodsousa@gmail.com>
+Date: Sat, 25 Jan 2014 20:36:23 +0100
+Subject: [PATCH 1/1] Deb file changes
+
+---
+ mediaserver.properties.example | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/mediaserver.properties.example b/mediaserver.properties.example
+index 2b43723..aa03e10 100644
+--- a/mediaserver.properties.example
++++ b/mediaserver.properties.example
+@@ -6,7 +6,7 @@ http.port=8080
+ http.tests.port=9090
+ https.port=8443
+ https.enabled=false
+-https.keystore.path=/$HOME/.jetty/jetty.jks
++https.keystore.path=/usr/share/buddycloud-media-server/jetty.jks
+ https.keystore.type=JKS
+ https.keystore.password=password
+ https.key.password=password
+@@ -27,15 +27,16 @@ xmpp.connection.servicename=buddycloud.org
+ xmpp.reply.timeout=30000
+
+ # JDBC
+-jdbc.db.url=jdbc:postgresql://localhost:5432/buddycloud-media-server?user=postgres&password=postgres
++jdbc.db.url=jdbc:postgresql://localhost:5432/#DATABASE_NAME#?user=#DATABASE_USER#&password=#DATABASE_PASSWORD#
+ jdbc.driver.class=org.postgresql.Driver
+
+ # File System
+-media.storage.root=/tmp
++media.storage.root=/usr/share/buddycloud-media-server/storage
+
+ # Max threshold beyond which files are written directly to disk, in bytes
+ # Only used while uploading multipart form data files
+ media.todisk.threshold=1048576
+
+ # Max filesize in bytes
+-media.sizelimit=100000000
+\ No newline at end of file
++media.sizelimit=100000000
++
+-- 
+1.8.3.2
