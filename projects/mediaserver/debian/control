@@ -2,7 +2,7 @@ Source: buddycloud-media-server
 Section: misc
 Priority: optional
 Maintainer: Rodrigo Duarte <rodrigo@buddycloud.com>
-Build-Depends: debhelper (>= 8), default-jre (>=1.6) | java6-runtime, cdbs, maven2
+Build-Depends: debhelper (>= 8), default-jre (>=1.6) | java6-runtime, cdbs, maven
 Standards-Version: 3.9.2
 Homepage: https://github.com/buddycloud/buddycloud-media-server
 
