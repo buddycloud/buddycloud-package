@@ -9,7 +9,7 @@ Build-Depends: cdbs,
  dh-buildinfo,
  nodejs (>= 0.6.1~dfsg1-3~),
  npm,
- libxml2-dev
+ libexpat1-dev
 Standards-Version: 3.9.3
 Homepage: https://github.com/buddycloud/buddycloud-http-api
 Vcs-Git: git://git.debian.org/git/collab-maint/buddycloud-server
