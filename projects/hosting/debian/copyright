@@ -1,0 +1,13 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: buddycloud-hosting
+Upstream-Contact: Abmar Barros <abmar@buddycloud.com>
+ http://github.com/buddycloud/hosting/issues/
+Source: https://github.com/buddycloud/hosting/downloads
+ git://github.com/buddycloud/hosting
+
+Files: *
+Copyright: Copyright 2013 Abmar Barros <abmar@buddycloud.com>
+License: Apache-2
+ buddycloud-media-server debian files are distributed under the Apache License 2.0. See the
+ `LICENSE` file.
+
