@@ -17,10 +17,12 @@ fi
 
 dbc_pgsql_createdb_encoding="UTF8"
 dbc_go "$pkg" "$@"
+mv /usr/share/$pkg/hosting.cfg.tokenized /usr/share/$pkg/hosting.cfg 
 
 sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/hosting.cfg
 sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/hosting.cfg
 sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/hosting.cfg
+sed -i "s/#DATABASE_HOST#/$dbc_dbhost/g" /usr/share/$pkg/hosting.cfg
 
 # Install python dependencies
 cd /usr/share/$pkg
