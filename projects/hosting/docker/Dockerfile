@@ -13,7 +13,7 @@ RUN apt-get install --no-install-recommends -y python-setuptools python-dev post
 
 ADD buddycloud-hosting.deb /tmp/buddycloud-hosting.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-hosting.deb
-ADD buddycloud-hosting.conf /etc/dbconfig-common/buddycloud-hosting.conf
+ADD buddycloud-hosting.cfg hosting.cfg
 
-ENTRYPOINT cd /usr/share/buddycloud-hosting; python run.py
+ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; python run.py
 EXPOSE 3000
