@@ -1,4 +1,4 @@
- Ubuntu/precise is the main distribution
+# Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
 # sanitize all package lists
@@ -7,13 +7,13 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe 
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
-# add python
+# add wget and java
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y python-setuptools python-dev postgresql-server-dev-9.1 libsqlite3-dev python dbconfig-common build-essential
+RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
+ADD buddycloud-media-server.deb /tmp/buddycloud-media-server.deb
+RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb
 
-ADD buddycloud-hosting.deb /tmp/buddycloud-hosting.deb
-RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-hosting.deb
-ADD buddycloud-hosting.cfg hosting.cfg
+ADD mediaserver.properties /usr/share/buddycloud-media-server
 
-ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; python run.py
-EXPOSE 3000
+ENTRYPOINT cd /usr/share/buddycloud-media-server; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
+
