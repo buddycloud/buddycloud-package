@@ -15,11 +15,8 @@ DATE=$(date +%Y%m%d)
 DATE_REPR=$(date -R)
 
 PACKAGE=$1
-VERSION=$2
 
-PACKAGE_NAME="${PACKAGE}-${VERSION}"
-
-echo "Processing project $PACKAGE_NAME"
+echo "Processing project $PACKAGE"
 
 # Changelog
 GIT_PATH=git
