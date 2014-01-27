@@ -16,7 +16,6 @@ DATE_REPR=$(date -R)
 
 PACKAGE=$1
 VERSION=$2
-PROJECT_NAME=$3
 
 PACKAGE_NAME="${PACKAGE}-${VERSION}"
 
@@ -34,7 +33,7 @@ fi
 REV_PREV="$(cat ../prev.rev)"
 
 # Check contrib in
-cp -r $CURRENT_DIR/projects/$PROJECT_NAME/debian .
+cp -r $CURRENT_DIR/projects/$PACKAGE/debian .
 
 # Convert svn changelog into deb changelog.
 # Strip duplicate blank lines too
