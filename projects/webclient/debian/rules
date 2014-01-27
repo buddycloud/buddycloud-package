@@ -31,4 +31,4 @@ build/$(pkg)::
 	   --exclude=.gitignore --exclude=node_modules
 	rm -rf build/js/app build/css/main.css
 clean::
-	rm -rf 'build'
+	rm -rf build
