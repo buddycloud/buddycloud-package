@@ -1,6 +1,6 @@
 run.py usr/share/buddycloud-hosting
 setup.py usr/share/buddycloud-hosting
 MANIFEST.in usr/share/buddycloud-hosting
-hosting.cfg usr/share/buddycloud-hosting
+hosting.cfg.tokenized usr/share/buddycloud-hosting
 hosting usr/share/buddycloud-hosting
 contrib/init.d/buddycloud-hosting etc/init.d
