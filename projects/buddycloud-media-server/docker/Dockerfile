@@ -13,7 +13,7 @@ RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 ADD buddycloud-media-server.deb /tmp/buddycloud-media-server.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb
 
-ADD mediaserver.properties /usr/share/buddycloud-media-server
+ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
+ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
 
 ENTRYPOINT cd /usr/share/buddycloud-media-server; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
-
