@@ -38,7 +38,7 @@ CHANGELOG="$(git log $REV_PREV..$REV --pretty=format:'[ %an ]%n>%s' | $CURRENT_D
 
 BUILD_VERSION="${DATE}.git.${REV}"
 DIST_REVISION="${BUILD_VERSION}-1"
-DIST=unstable
+DIST=all
 
 echo -e "${PACKAGE} (${DIST_REVISION}) ${DIST}; urgency=low\n\n\
 ${CHANGELOG}\n\n\
