@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+pkg=buddycloud-hosting
+
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/prerm.pgsql
+dbc_go "$pkg" "$@"
+
+#DEBHELPER#

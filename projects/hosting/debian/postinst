@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -e
+pkg=buddycloud-hosting
+
+# Adds buddycloud user
+if [ "$1" = "configure" ]; then
+    adduser --system --quiet --group --disabled-password \
+        --gecos "buddycloud sys account" \
+        --no-create-home --home "/var/run/buddycloud" \
+        buddycloud
+fi
+
+# Creates and populates the database
+. /usr/share/debconf/confmodule
+. /usr/share/dbconfig-common/dpkg/postinst.pgsql
+
+dbc_pgsql_createdb_encoding="UTF8"
+dbc_go "$pkg" "$@"
+
+sed -i "s/#DATABASE_NAME#/$dbc_dbname/g" /usr/share/$pkg/hosting.cfg
+sed -i "s/#DATABASE_USER#/$dbc_dbuser/g" /usr/share/$pkg/hosting.cfg
+sed -i "s/#DATABASE_PASSWORD#/$dbc_dbpass/g" /usr/share/$pkg/hosting.cfg
+
+# Install python dependencies
+cd /usr/share/$pkg
+python setup.py install
+
+# Gives permissions to data folders
+chown -R buddycloud:buddycloud "/usr/share/$pkg"
+
+# Creates log dir
+mkdir -p "/var/log/$pkg"
+chown -R buddycloud:buddycloud "/var/log/$pkg" 
+
+# Installs buddycloud init.d script
+update-rc.d buddycloud-hosting defaults
+
+#DEBHELPER#

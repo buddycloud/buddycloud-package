@@ -1,0 +1,17 @@
+Source: buddycloud-hosting
+Section: misc
+Priority: optional
+Maintainer: Abmar Barros <lloyd@evilprofessor.co.uk>
+Build-Depends: debhelper (>= 8), cdbs, python, python-setuptools
+Standards-Version: 3.9.2
+Homepage: https://github.com/buddycloud/hosting
+
+Package: buddycloud-hosting
+Architecture: all
+Pre-Depends: ${cdbs:Pre-Depends}
+Depends: ${misc:Depends},
+ ${cdbs:Depends}
+Recommends: ${cdbs:Recommends}
+Suggests: ${cdbs:Suggests}
+Description: buddycloud hosting
+ buddycloud-hosting provides hosting of buddycloud-enabled sites.
