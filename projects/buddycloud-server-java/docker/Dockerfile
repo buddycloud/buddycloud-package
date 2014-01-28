@@ -21,6 +21,7 @@ RUN cd /usr/share/buddycloud-server-java; mv channelserver*jar-with-dependencies
 # update configuration files
 ADD configuration.properties /usr/share/buddycloud-server-java/configuration.properties
 ADD log4j.properties /usr/share/buddycloud-server-java/log4j.properties
+ADD replace-tigase-vars /usr/share/buddycloud-server-java/replace-tigase-vars
 
 # run java-server
-ENTRYPOINT cd /usr/share/buddycloud-server-java; env; sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADD/g" configuration.properties; java -jar channelserver-jar-with-dependencies.jar
+ENTRYPOINT cd /usr/share/buddycloud-server-java; env; ./replace-tigase-vars; java -jar channelserver-jar-with-dependencies.jar
