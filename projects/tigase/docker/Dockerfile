@@ -22,6 +22,6 @@ ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 
 # run tigase
-ENTRYPOINT cd /opt/tigase-server && ./scripts/db-create-derby.sh /srv/tigasedb  && ./scripts/tigase.sh run etc/tigase.conf
+ENTRYPOINT cd /opt/tigase-server && mkdir -p /srv/tigasedb && ./scripts/db-create-derby.sh /srv/tigasedb && ./scripts/tigase.sh run etc/tigase.conf
 EXPOSE 5222 5269
 
