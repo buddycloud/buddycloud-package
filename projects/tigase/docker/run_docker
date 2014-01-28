@@ -1,0 +1,4 @@
+#!/bin/bash
+
+IMAGE_NAME=$1
+docker run -d --name=$IMAGE_NAME -P -p 5222:5222 -p 5269:5269 -t $IMAGE_NAME &
