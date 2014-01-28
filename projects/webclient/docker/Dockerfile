@@ -18,6 +18,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ADD webclient.deb /tmp/webclient.deb
 RUN dpkg -i /tmp/webclient.deb
 ADD buddycloud-apache-virtual-host /etc/apache2/sites-available
+ADD config.js /usr/share/buddycloud-webclient/config.js
 
 ENTRYPOINT mkdir -p /var/run/apache2; /usr/sbin/apache2ctl -D FOREGROUND
 EXPOSE 80 443
