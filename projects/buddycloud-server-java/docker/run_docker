@@ -2,4 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker run -d -name=$IMAGE_NAME -t $IMAGE_NAME
+docker run -link tigase:tigase -d -name=$IMAGE_NAME -t $IMAGE_NAME
