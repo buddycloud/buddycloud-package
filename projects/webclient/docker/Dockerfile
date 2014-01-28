@@ -15,8 +15,8 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
-ADD buddycloud-webclient.deb /tmp/buddycloud-webclient.deb
-RUN dpkg -i /tmp/buddycloud-webclient.deb
+ADD webclient.deb /tmp/webclient.deb
+RUN dpkg -i /tmp/webclient.deb
 ADD buddycloud-apache-virtual-host /etc/apache2/sites-available
 
 ENTRYPOINT mkdir -p /var/run/apache2; /usr/sbin/apache2ctl -D FOREGROUND
