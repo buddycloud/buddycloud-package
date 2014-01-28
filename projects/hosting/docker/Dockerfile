@@ -15,5 +15,5 @@ ADD hosting.deb /tmp/hosting.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
 ADD buddycloud-hosting.cfg hosting.cfg
 
-ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; python run.py
+ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; env; python run.py
 EXPOSE 3000
