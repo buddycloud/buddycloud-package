@@ -9,15 +9,13 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 
 # add wget and java
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget openjdk-7-jdk dbconfig-common
+RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 
 # install the java-server
-RUN wget 'http://downloads.buddycloud.com/packages/debian/nightly/buddycloud-server-java/buddycloud-server-java-0.1+dev20140126.git.d6294ab/buddycloud-server-java_0.1+dev20140126.git.d6294ab-1_all.deb' -O /tmp/buddycloud-server-java.deb -o /dev/null
+ADD buddycloud-server-java /tmp/buddycloud-server-java.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-server-java.deb
 
 ADD buddycloud-server-java.conf /etc/dbconfig-common/buddycloud-server-java.conf
 ADD configuration.properties /usr/share/buddycloud-server-java/configuration.properties
 # run java-server
-#ENTRYPOINT cd /usr/share/buddycloud-server-java; /usr/bin/java -jar channel-server-with-dependencies.jar
-# EXPOSE 5222:5222 5269:5269 5280:5280 5290:5290 5555:5555
-
+ENTRYPOINT cd /usr/share/buddycloud-server-java; /usr/bin/java -jar channel-server-with-dependencies.jar
