@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 PROJECT_NAME=$1
 BUILD_ENV=$2
@@ -24,5 +25,5 @@ if $STAGE_DEB; then
 fi
 
 # Build docker
-ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; docker build $PROJECT_NAME"
+ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; docker build -t $PROJECT_NAME"
 
