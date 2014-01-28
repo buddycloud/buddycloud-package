@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+import psycopg2
+import sys
+import os
+import urlparse
+
+db_url = 'postgres://integration_hosting:xohfeeko@db01.buddycloud.com.br:5432/integration_hosting'
+parsed_url = urlparse.urlparse(db_url)
+
+username = parsed_url.username
+password = parsed_url.password
+database = parsed_url.path[1:]
+hostname = parsed_url.hostname
+
+conn = psycopg2.connect(
+    database = database,
+    user = username,
+    password = password,
+    host = hostname
+)
+
+cur = conn.cursor()
+cur.execute('SELECT COUNT(*) FROM vhost WHERE "name"=%s', (sys.argv[1],))
+result = cur.fetchone()
+if result[0] == 0:
+    raise Exception()
