@@ -7,4 +7,4 @@ DEPLOY_DOCKER_USER=root
 DEPLOY_DOCKER_HOST=si.buddycloud.com
 
 # Where buddycloud-package is
-PACKAGE_PROJECT=$HOME/buddycloud-package
+PACKAGE_PROJECT=/root/buddycloud-package
