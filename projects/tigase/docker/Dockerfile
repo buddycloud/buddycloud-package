@@ -17,11 +17,12 @@ RUN tar -xC /opt -zf /tmp/tigase-server.tar.gz
 RUN mv /opt/tigase-server* /opt/tigase-server
 
 # prepare tigase
-ADD tigase.conf /etc/tigase.conf
+ADD tigase.conf /opt/tigase-server/etc/tigase.conf
+ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 RUN cd /opt/tigase-server && ./scripts/db-create-derby.sh /srv/tigasedb
 
 # run tigase
-ENTRYPOINT rm /opt/tigase-server/log{,s}/* ; cd /opt/tigase-server && ./scripts/tigase.sh run
-EXPOSE 5222:5222 5223:5223 5269:5269 5280:5280 5290:5290 5555:5555
+ENTRYPOINT cd /opt/tigase-server && ./scripts/tigase.sh run etc/tigase.conf
+EXPOSE 5222 5269
 
