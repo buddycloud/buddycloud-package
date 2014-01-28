@@ -19,3 +19,9 @@ ssh $DEPLOY_USER_AT_HOST "docker stop $PROJECT_NAME | true"
 ssh $DEPLOY_USER_AT_HOST "docker kill $PROJECT_NAME | true"
 ssh $DEPLOY_USER_AT_HOST "docker rm $PROJECT_NAME | true"
 ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; ./run_docker $PROJECT_NAME"
+
+sleep=$WAIT_RUN_TIME
+
+# Check if it is running
+ssh $DEPLOY_USER_AT_HOST "docker ps | grep $PROJECT_NAME:latest"
+exit $?
