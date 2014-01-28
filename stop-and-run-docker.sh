@@ -1,11 +1,12 @@
 #!/bin/bash
 
 PROJECT_NAME=$1
+BUILD_ENV=$2
 DIR_NAME="$(dirname $0)"
 CURRENT_DIR="$(cd $DIR_NAME; pwd)"
 
 # Source config
-source "$CURRENT_DIR/settings.production"
+source "$CURRENT_DIR/settings.$BUILD_ENV"
 
 # Docker folder
 DOCKER_PROJECT=$PACKAGE_PROJECT/projects/$PROJECT_NAME/docker
