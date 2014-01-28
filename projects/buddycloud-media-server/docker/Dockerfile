@@ -16,7 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb
 # update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
-ADD replace-tigase-vars /usr/share/buddycloud-server-java/replace-tigase-vars
+ADD replace-tigase-vars /usr/share/buddycloud-media-server/replace-tigase-vars
 
 ENTRYPOINT cd /usr/share/buddycloud-media-server;  ./replace-tigase-vars; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
 EXPOSE 60080:60080
