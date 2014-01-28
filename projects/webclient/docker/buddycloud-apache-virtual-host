@@ -5,6 +5,11 @@
 #        RewriteCond %{HTTPS} off
 #        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 #</VirtualHost>
+<VirtualHost *:80>
+        ServerName buddycloud.net
+        ProxyPass / http://#HOSTING_ADDRESS#:3000
+        ProxyPassReverse / http://#HOSTING_ADDRESS#:3000/
+</VirtualHost>
  
 <VirtualHost *:80>
         ServerName  web.buddycloud.net
@@ -50,7 +55,5 @@
         KeepAlive On
         ProxyPass /api/ http://#HTTP_API_ADDRESS#:9123/
         ProxyPassReverse /api/ http://#HTTP_API_ADDRESS#:9123/
-        ProxyPass /hosting/ http://#HOSTING_ADDRESS#:3000
-        ProxyPassReverse /hosting/ http://#HOSTING_ADDRESS#:3000/
 </VirtualHost>
 
