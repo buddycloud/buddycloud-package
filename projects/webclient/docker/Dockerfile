@@ -20,7 +20,7 @@ RUN dpkg -i /tmp/webclient.deb
 ADD buddycloud.net /etc/apache2/sites-available/buddycloud.net
 ADD config.js /usr/share/buddycloud-webclient/config.js
 
-RUN a2dissite buddycloud-apache-virtual-host; a2ensite buddycloud.net; rm /etc/apache2/sites-available/uddycloud-apache-virtual-host
+RUN a2dissite buddycloud-apache-virtual-host; a2ensite buddycloud.net; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
 
 ENTRYPOINT mkdir -p /var/run/apache2; /tmp/replace-api-hosting-vars; /usr/sbin/apache2ctl -D FOREGROUND
