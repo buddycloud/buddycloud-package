@@ -21,6 +21,8 @@ ADD buddycloud-http-api.deb /tmp/buddycloud-http-api.deb
 RUN dpkg -i /tmp/buddycloud-http-api.deb
 ADD config.js /usr/share/buddycloud-http-api/config.js
 
+ADD replace-media-server-vars /usr/share/buddycloud-http-api/replace-media-server-vars
+
 # run the httpapi
-ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; node server.js
+ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; ./replace-media-server-vars; node server.js
 EXPOSE 9123

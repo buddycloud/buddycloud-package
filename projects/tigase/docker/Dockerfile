@@ -23,5 +23,4 @@ ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 
 # run tigase
 ENTRYPOINT cd /opt/tigase-server && ./scripts/tigase.sh run etc/tigase.conf
-EXPOSE 5222 5269
-EXPOSE 5270
+EXPOSE 5222 5269 5270
