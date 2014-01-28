@@ -1,4 +1,5 @@
 #!/bin/bash
 
-sed -i "s/#HTTP_API_ADDRESS#/$BUDDYCLOUD_HTTP_API_PORT_9123_TCP_ADDR/g" buddycloud-apache-virtual-host
-sed -i "s/#HOSTING_ADDRESS#/$HOSTING_PORT_3000_TCP_ADDR/g" buddycloud-apache-virtual-host
+sed -i "s/#HTTP_API_ADDRESS#/$BUDDYCLOUD_HTTP_API_PORT_9123_TCP_ADDR/g" /etc/apache2/sites-available/buddycloud.net
+sed -i "s/#HOSTING_ADDRESS#/$HOSTING_PORT_3000_TCP_ADDR/g" /etc/apache2/sites-available/buddycloud.net
+
