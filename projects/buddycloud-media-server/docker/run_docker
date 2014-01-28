@@ -2,7 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker stop $IMAGE_NAME | true
-docker kill $IMAGE_NAME | true
-docker rm $IMAGE_NAME | true
 docker run -d -name=$IMAGE_NAME -v /var/lib/media-storage:/var/lib/media-storage -t $IMAGE_NAME
