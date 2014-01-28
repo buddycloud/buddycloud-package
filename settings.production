@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Docker host username
+DEPLOY_DOCKER_USER=root
+
+# Docker host
+DEPLOY_DOCKER_HOST=si.buddycloud.com
+
+# Where buddycloud-package is
+PACKAGE_PROJECT=buddycloud-package
