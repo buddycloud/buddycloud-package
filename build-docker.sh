@@ -24,5 +24,5 @@ if $STAGE_DEB; then
 fi
 
 # Build docker
-ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; docker build ."
+ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; docker build $PROJECT_NAME"
 
