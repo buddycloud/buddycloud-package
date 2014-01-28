@@ -11,8 +11,8 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y python-setuptools python-dev postgresql-server-dev-9.1 libsqlite3-dev python dbconfig-common build-essential
 
-ADD buddycloud-hosting.deb /tmp/buddycloud-hosting.deb
-RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-hosting.deb
+ADD hosting.deb /tmp/hosting.deb
+RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
 ADD buddycloud-hosting.cfg hosting.cfg
 
 ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; python run.py
