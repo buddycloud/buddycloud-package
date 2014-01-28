@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -i "s/#MEDIA_SERVER_ADDRESS#/$BUDDYCLOUD_MEDIA_SERVER_PORT_60080_TCP_ADDR/g" config.js
