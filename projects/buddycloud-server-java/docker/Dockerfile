@@ -23,4 +23,4 @@ ADD configuration.properties /usr/share/buddycloud-server-java/configuration.pro
 ADD log4j.properties /usr/share/buddycloud-server-java/log4j.properties
 
 # run java-server
-ENTRYPOINT cd /usr/share/buddycloud-server-java; sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADD/g" configuration.properties; java -jar channelserver-jar-with-dependencies.jar
+ENTRYPOINT cd /usr/share/buddycloud-server-java; env; sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADD/g" configuration.properties; java -jar channelserver-jar-with-dependencies.jar
