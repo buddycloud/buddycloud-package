@@ -13,7 +13,8 @@ RUN apt-get install --no-install-recommends -y python-setuptools python-dev post
 
 ADD hosting.deb /tmp/hosting.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
-ADD buddycloud-hosting.cfg hosting.cfg
+ADD buddycloud-hosting.cfg /usr/share/buddycloud-hosting/hosting.cfg
+ADD replace-tigase-vars /usr/share/buddycloud-hosting/replace-tigase-vars
 
-ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; python run.py
+ENTRYPOINT cd /usr/share/buddycloud-hosting; cat hosting.cfg; env; ./replace-tigase-vars; python run.py
 EXPOSE 3000
