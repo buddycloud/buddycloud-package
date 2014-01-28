@@ -48,7 +48,9 @@
         AddType application/x-web-app-manifest+json .webapp
 
         KeepAlive On
-        ProxyPass /api/ http://localhost:9123/
-        ProxyPassReverse /api/ http://localhost:9123/
+        ProxyPass /api/ http://#HTTP_API_ADDRESS#:9123/
+        ProxyPassReverse /api/ http://#HTTP_API_ADDRESS#:9123/
+        ProxyPass /hosting/ http://#HOSTING_ADDRESS#:3000
+        ProxyPassReverse /hosting/ http://#HOSTING_ADDRESS#:3000/
 </VirtualHost>
 

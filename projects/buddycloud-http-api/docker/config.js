@@ -10,6 +10,6 @@ exports.production = {
   pusherComponent: 'pusher.buddycloud.com',
   friendFinderComponent: 'friend-finder.buddycloud.com',
   searchComponent: 'search.buddycloud.org',
-  homeMediaRoot: '#MEDIA_SERVER_ADDRESS',
+  homeMediaRoot: 'http://#MEDIA_SERVER_ADDRESS#:60080',
 };
 
