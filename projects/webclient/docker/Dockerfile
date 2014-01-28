@@ -21,7 +21,7 @@ ADD buddycloud.net /etc/apache2/sites-available
 ADD config.js /usr/share/buddycloud-webclient/config.js
 
 RUN a2dissite buddycloud-apache-virtual-host; a2ensite buddycloud.net
-ADD replace-api-hosting-vars /usr/share/buddycloud-webclient/replace-api-hosting-vars
+ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
 
-ENTRYPOINT mkdir -p /var/run/apache2; ./replace-api-hosting-vars; /usr/sbin/apache2ctl -D FOREGROUND
+ENTRYPOINT mkdir -p /var/run/apache2; /tmp/replace-api-hosting-vars; /usr/sbin/apache2ctl -D FOREGROUND
 EXPOSE 80 443
