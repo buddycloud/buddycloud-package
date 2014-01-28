@@ -24,4 +24,9 @@ sleep $WAIT_RUN_TIME
 
 # Check if it is running
 ssh $DEPLOY_USER_AT_HOST "docker ps | grep $PROJECT_NAME:latest"
-exit $?
+RUN_CHECK=$?
+
+if [ $RUN_CHECK == 1 ]; then
+  ssh $DEPLOY_USER_AT_HOST "docker ps -a | grep $PROJECT_NAME:latest | head -n1 | cut -d' ' -f1"
+  exit 1
+fi
