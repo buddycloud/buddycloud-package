@@ -16,7 +16,8 @@ ADD buddycloud-server-java.deb /tmp/buddycloud-server-java.deb
 ADD external-domain-checker /usr/bin/external-domain-checker
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-server-java.deb
 RUN chmod +x /usr/bin/external-domain-checker
+RUN cd /usr/share/buddycloud-server-java; mv channelserver*jar-with-dependencies.jar channelserver-jar-with-dependencies.jar
 
 ADD configuration.properties /usr/share/buddycloud-server-java/configuration.properties
 # run java-server
-ENTRYPOINT cd /usr/share/buddycloud-server-java; sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADD/g" configuration.properties; /usr/bin/java -jar channel-server-with-dependencies.jar
+ENTRYPOINT cd /usr/share/buddycloud-server-java; sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADD/g" configuration.properties; ls target; java -jar channelserver-with-dependencies.jar
