@@ -14,10 +14,10 @@ RUN add-apt-repository ppa:chris-lea/node.js
 
 # add wget and nodejs
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget nodejs
+RUN apt-get install --no-install-recommends -y nodejs
 
 # install the httpapi
-RUN wget http://downloads.buddycloud.com/packages/debian/nightly/buddycloud-http-api/buddycloud-http-api-0.1+dev20140126.git.e0da321/buddycloud-http-api_0.1+dev20140126.git.e0da321-1_amd64.deb -O /tmp/buddycloud-http-api.deb -o /dev/null
+ADD buddycloud-http-api /tmp/buddycloud-http-api.deb
 RUN dpkg -i /tmp/buddycloud-http-api.deb
 ADD config.js /usr/share/buddycloud-http-api/config.js
 
