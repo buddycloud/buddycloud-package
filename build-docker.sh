@@ -3,6 +3,10 @@
 PROJECT_NAME=$1
 LATEST_DEB=$(ls -t *.deb | head -n 1)
 DEPLOY_USER_AT_HOST=$DEPLOY_DOCKER_USER@$DEPLOY_DOCKER_HOST
+CURRENT_DIR="$(cd $DIR_NAME; pwd)"
+
+# Source config
+source "$CURRENT_DIR/settings.production"
 
 # Get latest changes for buddycloud-package
 ssh $DEPLOY_USER_AT_HOST "cd $PACKAGE_PROJECT; git pull"
