@@ -5,4 +5,4 @@ IMAGE_NAME=$1
 docker stop $IMAGE_NAME | true
 docker kill $IMAGE_NAME | true
 docker rm $IMAGE_NAME | true
-docker run -d --name=$IMAGE_NAME -P -p 5222:5222 -p 5269:5269 -t $IMAGE_NAME
+docker run -d -name=$IMAGE_NAME -P -p 5222:5222 -p 5269:5269 -t $IMAGE_NAME
