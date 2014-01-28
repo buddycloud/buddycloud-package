@@ -2,6 +2,7 @@
 
 PROJECT_NAME=$1
 IS_DEB_PROJECT=$2
+DIR_NAME="$(dirname $0)"
 CURRENT_DIR="$(cd $DIR_NAME; pwd)"
 
 # Source config

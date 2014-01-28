@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PROJECT_NAME=$1
+DIR_NAME="$(dirname $0)"
 CURRENT_DIR="$(cd $DIR_NAME; pwd)"
 
 # Source config
