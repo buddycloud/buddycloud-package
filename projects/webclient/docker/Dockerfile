@@ -24,6 +24,7 @@ RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/bu
 RUN a2enmod rewrite
 RUN a2enmod proxy
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
+ADD ports.conf /etc/apache2/ports.conf
 
-ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem; /tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem; echo "SSLStrictSNIVHostCheck on" >> /etc/apache2/apache2.conf;/tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
 EXPOSE 80 443
