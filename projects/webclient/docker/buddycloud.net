@@ -5,6 +5,16 @@
 #        RewriteCond %{HTTPS} off
 #        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 #</VirtualHost>
+
+<VirtualHost *:443>
+        # push any secure requests back to HTTP
+        ServerName  web.buddycloud.net
+        ServerAlias *.buddycloud.net
+        RewriteEngine On
+        RewriteCond %{HTTP} off
+        RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+
 <VirtualHost *:80>
         ServerName buddycloud.net
         KeepAlive On
