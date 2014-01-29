@@ -1,30 +1,49 @@
-#<VirtualHost *:80>
-#        # push any non-secure requests to HTTPS
-#        ServerName  web.buddycloud.com
-#        RewriteEngine On
-#        RewriteCond %{HTTPS} off
-#        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-#</VirtualHost>
+<VirtualHost *:80>
+        # push any non-secure requests to HTTPS
+        ServerName  web-hosting.buddycloud.com
+        ServerAlias *.buddycloud.com
+        RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
 
 <VirtualHost *:80>
-        ServerName buddycloud.net
+        # push any non-secure requests to HTTPS
+        ServerName  hosting.buddycloud.com
+        RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerName hosting.buddycloud.com
         KeepAlive On
         ProxyPass / http://#HOSTING_ADDRESS#:3000/
         ProxyPassReverse / http://#HOSTING_ADDRESS#:3000/
+        SSLEngine On
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
+        
+        LogLevel alert
+        ErrorLog  /var/log/apache2/hosting.buddycloud.com-error.log
+        CustomLog /var/log/apache2/hosting.buddycloud.com-access.log combined
+        
 </VirtualHost>
- 
-<VirtualHost *:80>
-        ServerName  web.buddycloud.net
-        ServerAlias *.buddycloud.net
-        #SSLEngine On
-        #SSLCertificateFile      /etc/apache2/certs/buddycloud.org.pem
-        #SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.org.pem
-        #SSLCertificateChainFile /etc/apache2/certs/globalsign-root-ca.pem
-        #SSLCACertificateFile    /etc/apache2/certs/globalsign-intermediate-cert.pem
+
+<VirtualHost *:443>
+        ServerName  web-hosting.buddycloud.com
+        ServerAlias *.buddycloud.com
+        SSLEngine On
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
         DocumentRoot /usr/share/buddycloud-webclient/
         LogLevel alert
-        ErrorLog  /var/log/apache2/web.buddycloud.net-error.log
-        CustomLog /var/log/apache2/web.buddycloud.net-access.log combined
+        ErrorLog  /var/log/apache2/web.buddycloud.com-error.log
+        CustomLog /var/log/apache2/web.buddycloud.com-access.log combined
         RewriteEngine On
         RewriteCond %{REQUEST_URI} !^/js/
         RewriteCond %{REQUEST_URI} !^/img/
@@ -58,4 +77,3 @@
         ProxyPass /api/ http://#HTTP_API_ADDRESS#:9123/
         ProxyPassReverse /api/ http://#HTTP_API_ADDRESS#:9123/
 </VirtualHost>
-
