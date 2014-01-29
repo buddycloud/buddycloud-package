@@ -1,3 +1,4 @@
 #!/bin/bash
 
-sed -i "s/#MEDIA_SERVER_ADDRESS#/$BUDDYCLOUD_MEDIA_SERVER_PORT_60080_TCP_ADDR/g" config.js
+sed -i "s/#MEDIA_HOST#/$MEDIA_PORT_60080_TCP_ADDR/g" config.js
+sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5222_TCP_ADDR/g" config.js
