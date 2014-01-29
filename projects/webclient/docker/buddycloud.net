@@ -7,6 +7,7 @@
 #</VirtualHost>
 <VirtualHost *:80>
         ServerName buddycloud.net
+        KeepAlive On
         ProxyPass / http://#HOSTING_ADDRESS#:3000
         ProxyPassReverse / http://#HOSTING_ADDRESS#:3000/
 </VirtualHost>
