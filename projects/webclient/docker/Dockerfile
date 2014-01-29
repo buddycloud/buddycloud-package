@@ -17,7 +17,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 ADD webclient.deb /tmp/webclient.deb
 RUN dpkg -i /tmp/webclient.deb
-ADD buddycloud.net /etc/apache2/sites-enabled/default
+ADD buddycloud.net /etc/apache2/sites-enabled/000-default
 ADD config.js /usr/share/buddycloud-webclient/config.js
 
 RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
