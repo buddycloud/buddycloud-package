@@ -25,5 +25,5 @@ RUN a2enmod rewrite
 RUN a2enmod proxy
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
 
-ENTRYPOINT mkdir -p /var/run/apache2; /tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl graceful; apache2ctl -D FOREGROUND
+ENTRYPOINT mkdir -p /var/run/apache2; /tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
 EXPOSE 80 443
