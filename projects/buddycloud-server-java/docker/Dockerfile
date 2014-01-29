@@ -7,9 +7,13 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe 
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
-# add wget and java
+# add java
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
+
+# add python deps
+RUN apt-get install --no-install-recommends -y python-setuptools postgresql-server-dev-9.1 libsqlite3-dev build-essential python-dev
+RUN easy_install psycopg2
 
 # install the java-server
 ADD buddycloud-server-java.deb /tmp/buddycloud-server-java.deb
