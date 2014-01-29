@@ -19,12 +19,11 @@ ADD webclient.deb /tmp/webclient.deb
 RUN dpkg -i /tmp/webclient.deb
 ADD buddycloud.net /etc/apache2/sites-enabled/000-default
 ADD config.js /usr/share/buddycloud-webclient/config.js
-RUN mv /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem
 
 RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
 RUN a2enmod rewrite
 RUN a2enmod proxy
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
 
-ENTRYPOINT mkdir -p /var/run/apache2; /tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem; /tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
 EXPOSE 80 443
