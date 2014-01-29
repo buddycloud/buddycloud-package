@@ -1,6 +1,6 @@
 define({
   baseUrl: '/api/',
-  homeDomain: 'buddycloud.net',
+  homeDomain: 'buddycloud.com',
   useURLHostAsDomain: true,
   embedlyKey: '',
   embedlySecure: true,
