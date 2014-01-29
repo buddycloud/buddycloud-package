@@ -19,6 +19,7 @@ ADD webclient.deb /tmp/webclient.deb
 RUN dpkg -i /tmp/webclient.deb
 ADD buddycloud.net /etc/apache2/sites-enabled/000-default
 ADD config.js /usr/share/buddycloud-webclient/config.js
+ADD /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem
 
 RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
 RUN a2enmod rewrite
