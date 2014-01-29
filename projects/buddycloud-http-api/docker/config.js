@@ -5,11 +5,11 @@ exports._ = {
 // Production settings
 exports.production = {
   debug: true,
-  xmppHost: '127.0.0.1',
+  xmppHost: '#TIGASE_HOST#',
   channelDomain: 'channels.buddycloud.net',
   pusherComponent: 'pusher.buddycloud.com',
   friendFinderComponent: 'friend-finder.buddycloud.com',
   searchComponent: 'search.buddycloud.org',
-  homeMediaRoot: 'http://#MEDIA_SERVER_ADDRESS#:60080',
+  homeMediaRoot: 'http://#MEDIA_HOST#:60080',
 };
 
