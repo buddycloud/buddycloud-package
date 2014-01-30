@@ -7,9 +7,11 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe 
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
+RUN add-apt-repository ppa:webupd8team/java
+
 # add wget
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget openjdk-7-jdk
+RUN apt-get install --no-install-recommends -y wget oracle-java7-installer
 
 # install tigase
 RUN wget 'https://projects.tigase.org/attachments/download/1319/tigase-server-5.2.0-rc2-b3437-dist-max.tar.gz' -O /tmp/tigase-server.tar.gz -o /dev/null
