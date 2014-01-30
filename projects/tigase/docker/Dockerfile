@@ -11,6 +11,7 @@ RUN add-apt-repository ppa:webupd8team/java
 
 # add wget
 RUN apt-get update
+RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get install --no-install-recommends -y wget oracle-java7-installer
 
 # install tigase
@@ -24,5 +25,5 @@ ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 
 # run tigase
-ENTRYPOINT cd /opt/tigase-server && ./scripts/tigase.sh run etc/tigase.conf
+ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf
 EXPOSE 5222 5269 5270
