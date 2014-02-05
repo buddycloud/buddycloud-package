@@ -28,5 +28,5 @@ ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
 
 # run tigase
-ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf
+ENTRYPOINT cd /opt/tigase-server; java -version; tail -F logs/tigase.log.0 & ./scripts/tigase.sh run etc/tigase.conf
 EXPOSE 5222 5269 5270
