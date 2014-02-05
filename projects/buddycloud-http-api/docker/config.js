@@ -6,7 +6,7 @@ exports._ = {
 exports.production = {
   debug: true,
   xmppHost: '#TIGASE_HOST#',
-  channelDomain: 'channels.buddycloud.net',
+  channelDomain: 'cs.buddycloud.com',
   xmppAnonymousDomain: 'anon.buddycloud.com',
   pusherComponent: 'pusher.buddycloud.com',
   friendFinderComponent: 'friend-finder.buddycloud.com',
