@@ -12,6 +12,7 @@ RUN apt-get update
 RUN apt-get install --no-install-recommends -y python-setuptools python-dev postgresql-server-dev-9.1 libsqlite3-dev python dbconfig-common build-essential
 
 ADD hosting.deb /tmp/hosting.deb
+RUN /bin/echo v1
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
 ADD buddycloud-hosting.cfg /usr/share/buddycloud-hosting/hosting.cfg
 ADD replace-tigase-vars /usr/share/buddycloud-hosting/replace-tigase-vars
