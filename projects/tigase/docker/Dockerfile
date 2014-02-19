@@ -26,6 +26,7 @@ ADD tigase.conf /opt/tigase-server/etc/tigase.conf
 ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
+ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
 # run tigase
 ENTRYPOINT cd /opt/tigase-server; java -version; tail -F logs/tigase.log.0 & ./scripts/tigase.sh run etc/tigase.conf
