@@ -2,5 +2,5 @@
 
 IMAGE_NAME=$1
 
-docker run -link buddycloud-media-server:media -link tigase:tigase -d --name=$IMAGE_NAME -t $IMAGE_NAME
+docker run -d --name=$IMAGE_NAME -P -p 9123:9123 -t $IMAGE_NAME
 

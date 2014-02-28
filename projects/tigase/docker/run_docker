@@ -2,4 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker run -d -name=$IMAGE_NAME -v /srv/secret:/srv/secret -P -p 5222:5222 -p 5269:5269 -t $IMAGE_NAME
+docker run -d -name=$IMAGE_NAME -v /srv/secret:/srv/secret -P -p 5222:5222 -p 5269:5269 -p 5270:5270 -t $IMAGE_NAME

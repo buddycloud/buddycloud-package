@@ -19,4 +19,4 @@ ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.proper
 ADD replace-tigase-vars /usr/share/buddycloud-media-server/replace-tigase-vars
 
 ENTRYPOINT cd /usr/share/buddycloud-media-server;  ./replace-tigase-vars; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
-EXPOSE 60080:60080
+EXPOSE 60080

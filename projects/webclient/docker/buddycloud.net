@@ -18,8 +18,8 @@
 <VirtualHost *:443>
         ServerName hosting.buddycloud.com
         KeepAlive On
-        ProxyPass / http://#HOSTING_ADDRESS#:3000/
-        ProxyPassReverse / http://#HOSTING_ADDRESS#:3000/
+        ProxyPass / http://si.buddycloud.com:3000/
+        ProxyPassReverse / http://si.buddycloud.com:3000/
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
         SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
@@ -74,6 +74,6 @@
         AddType application/x-web-app-manifest+json .webapp
 
         KeepAlive On
-        ProxyPass /api/ http://#HTTP_API_ADDRESS#:9123/
-        ProxyPassReverse /api/ http://#HTTP_API_ADDRESS#:9123/
+        ProxyPass /api/ http://si.buddycloud.com:9123/
+        ProxyPassReverse /api/ http://si.buddycloud.com:9123/
 </VirtualHost>
