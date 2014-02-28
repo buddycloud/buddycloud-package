@@ -2,4 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker run -link buddycloud-http-api:api -link tigase:tigase -d -name=$IMAGE_NAME -t $IMAGE_NAME
+docker run -d -name=$IMAGE_NAME -P -p 3000:3000 -t $IMAGE_NAME
