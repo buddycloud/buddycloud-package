@@ -41,7 +41,7 @@
 
 <VirtualHost *:443>
         ServerName  web-hosting.buddycloud.com
-        ServerAlias *.buddycloud.com buddycloud.*
+        ServerAlias *.buddycloud.com
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
         SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
