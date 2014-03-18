@@ -16,6 +16,13 @@
 </VirtualHost>
 
 <VirtualHost *:443>
+        ServerAlias buddycloud.*
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$ 
+        RewriteRule ^(.*)$ https://web-hosting.buddycloud.com%{REQUEST_URI}?h=%1 [QSA]
+</VirtualHost>
+
+<VirtualHost *:443>
         ServerName hosting.buddycloud.com
         KeepAlive On
         ProxyPass / http://si.buddycloud.com:3000/
