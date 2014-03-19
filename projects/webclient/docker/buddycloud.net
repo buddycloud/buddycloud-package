@@ -1,10 +1,8 @@
 <VirtualHost *:80>
-        # push any non-secure requests to HTTPS
-        ServerName  web-hosting.buddycloud.com
-        ServerAlias *.buddycloud.com
+        ServerAlias buddycloud.*
         RewriteEngine On
-        RewriteCond %{HTTPS} off
-        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
+        RewriteRule ^(.*)$ https://hosted.buddycloud.com/a/%1 [QSA]
 </VirtualHost>
 
 <VirtualHost *:80>
@@ -13,26 +11,6 @@
         RewriteEngine On
         RewriteCond %{HTTPS} off
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-</VirtualHost>
-
-<VirtualHost *:80>
-        ServerAlias buddycloud.*
-        RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
-        RewriteRule ^(.*)$ https://web-hosting.buddycloud.com%{REQUEST_URI}?h=%1 [QSA]
-</VirtualHost>
-
-<VirtualHost *:443>
-        ServerAlias buddycloud.*
-        RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
-        RewriteRule ^(.*)$ https://web-hosting.buddycloud.com%{REQUEST_URI}?h=%1 [QSA]
-        
-        SSLEngine On
-        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
-        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
 </VirtualHost>
 
 <VirtualHost *:443>
@@ -49,7 +27,15 @@
         LogLevel alert
         ErrorLog  /var/log/apache2/hosting.buddycloud.com-error.log
         CustomLog /var/log/apache2/hosting.buddycloud.com-access.log combined
-        
+</VirtualHost>
+
+<VirtualHost *:80>
+        # push any non-secure requests to HTTPS
+        ServerName  web-hosting.buddycloud.com
+        ServerAlias *.buddycloud.com
+        RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 
 <VirtualHost *:443>
