@@ -1,7 +1,7 @@
 <VirtualHost *:80>
         # push any non-secure requests to HTTPS
         ServerName  web-hosting.buddycloud.com
-        ServerAlias *.buddycloud.com buddycloud.*
+        ServerAlias *.buddycloud.com
         RewriteEngine On
         RewriteCond %{HTTPS} off
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
@@ -15,11 +15,24 @@
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 
+<VirtualHost *:80>
+        ServerAlias buddycloud.*
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
+        RewriteRule ^(.*)$ https://web-hosting.buddycloud.com%{REQUEST_URI}?h=%1 [QSA]
+</VirtualHost>
+
 <VirtualHost *:443>
         ServerAlias buddycloud.*
         RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$ 
+        RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
         RewriteRule ^(.*)$ https://web-hosting.buddycloud.com%{REQUEST_URI}?h=%1 [QSA]
+        
+        SSLEngine On
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
 </VirtualHost>
 
 <VirtualHost *:443>
