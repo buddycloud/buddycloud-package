@@ -2,7 +2,7 @@
         ServerAlias buddycloud.*
         RewriteEngine On
         RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
-        RewriteRule ^(.*)$ https://hosted.buddycloud.com/a/%1 [QSA]
+        RewriteRule ^(.*)$ https://hosted.buddycloud.com/?h=%1
 </VirtualHost>
 
 <VirtualHost *:80>
