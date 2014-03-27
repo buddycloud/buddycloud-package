@@ -5,7 +5,6 @@ exports._ = {
 // Production settings
 exports.production = {
   debug: true,
-  xmppHost: 'si.buddycloud.com',
   channelDomain: 'cs.buddycloud.com',
   xmppAnonymousDomain: 'anon.buddycloud.com',
   pusherComponent: 'pusher.buddycloud.com',
