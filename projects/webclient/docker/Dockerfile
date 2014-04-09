@@ -9,7 +9,8 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 
 # add wget and java
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget openssl apache2
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
+RUN apt-get install --no-install-recommends -y wget apache2
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data

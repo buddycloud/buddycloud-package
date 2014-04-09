@@ -8,6 +8,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted u
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties
 RUN add-apt-repository ppa:webupd8team/java
 

@@ -9,6 +9,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 
 # add chris-lea repo
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties libicu-dev
 RUN add-apt-repository ppa:chris-lea/node.js
 

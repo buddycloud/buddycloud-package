@@ -9,6 +9,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 
 # add wget and java
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 ADD buddycloud-media-server.deb /tmp/buddycloud-media-server.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb

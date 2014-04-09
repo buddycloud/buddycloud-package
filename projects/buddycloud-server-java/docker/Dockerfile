@@ -9,6 +9,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted 
 
 # add java
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 
 # add python deps
