@@ -18,7 +18,7 @@ RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true 
 RUN apt-get install --no-install-recommends -y wget oracle-java7-installer
 
 # install tigase
-RUN wget 'https://projects.tigase.org/attachments/download/1319/tigase-server-5.2.0-rc2-b3437-dist-max.tar.gz' -O /tmp/tigase-server.tar.gz -o /dev/null
+RUN wget 'https://projects.tigase.org/attachments/download/1409/tigase-server-5.2.1-b3461-dist-max.tar.gz' -O /tmp/tigase-server.tar.gz -o /dev/null
 RUN tar -xC /opt -zf /tmp/tigase-server.tar.gz
 RUN mv /opt/tigase-server* /opt/tigase-server
 
@@ -27,7 +27,6 @@ ADD tigase.conf /opt/tigase-server/etc/tigase.conf
 ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
-ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
 # run tigase
 ENTRYPOINT cd /opt/tigase-server; java -version; tail -F logs/tigase.log.0 & ./scripts/tigase.sh run etc/tigase.conf
