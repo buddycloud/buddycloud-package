@@ -19,5 +19,5 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
 ADD buddycloud-hosting.cfg /usr/share/buddycloud-hosting/hosting.cfg
 ADD replace-tigase-vars /usr/share/buddycloud-hosting/replace-tigase-vars
 
-ENTRYPOINT cd /usr/share/buddycloud-hosting; env; ./replace-tigase-vars; cat hosting.cfg; python run.py
+ENTRYPOINT cd /usr/share/buddycloud-hosting; env; ./replace-tigase-vars; python run.py
 EXPOSE 3000
