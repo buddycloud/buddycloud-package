@@ -7,6 +7,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe 
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
+RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties

@@ -8,6 +8,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted u
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
 # add wget and java
+RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
