@@ -7,10 +7,13 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe 
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
-# add wget and java
+# add wget and apache2
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
+RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties
+RUN apt-add-repository ppa:ondrej/apache2
+RUN apt-get update
 RUN apt-get install --no-install-recommends -y wget apache2
 
 ENV APACHE_RUN_USER www-data
@@ -25,6 +28,7 @@ ADD config.js /usr/share/buddycloud-webclient/config.js
 RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
 RUN a2enmod rewrite
 RUN a2enmod proxy
+RUN a2enmod proxy_wstunnel
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
 ADD ports.conf /etc/apache2/ports.conf
 
