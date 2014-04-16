@@ -16,21 +16,21 @@ RUN apt-add-repository ppa:ondrej/apache2
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y wget apache2
 
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-
 ADD webclient.deb /tmp/webclient.deb
-RUN dpkg -i /tmp/webclient.deb
-ADD buddycloud.net /etc/apache2/sites-enabled/000-default
+RUN dpkg -i /tmp/webclient.deb | true
+ADD buddycloud.net /etc/apache2/sites-available/000-default.conf
+RUN a2ensite 000-default.conf
 ADD config.js /usr/share/buddycloud-webclient/config.js
 
-RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host
 RUN a2enmod rewrite
 RUN a2enmod proxy
 RUN a2enmod proxy_wstunnel
+RUN a2enmod ssl
+RUN a2enmod headers
+RUN a2enmod expires
+RUN a2enmod rewrite
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
-ADD ports.conf /etc/apache2/ports.conf
+RUN mkdir -p /etc/apache2/certs/;rm /etc/apache2/conf-enabled/*
 
-ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem; echo "SSLStrictSNIVHostCheck on" >> /etc/apache2/apache2.conf;/tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; apache2ctl -D FOREGROUND
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; tail -F /var/log/apache2/*.log & apache2ctl -D FOREGROUND
 EXPOSE 80 443
