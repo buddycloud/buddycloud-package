@@ -31,6 +31,30 @@
 
 <VirtualHost *:80>
         # push any non-secure requests to HTTPS
+        ServerName  xmpp-ftw.buddycloud.com
+        RewriteEngine On
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerName xmpp-ftw.buddycloud.com
+        KeepAlive On
+        ProxyPass / http://si.buddycloud.com:6000/
+        ProxyPassReverse / http://si.buddycloud.com:6000/
+        SSLEngine On
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
+
+        LogLevel alert
+        ErrorLog  /var/log/apache2/xmpp-ftw.buddycloud.com-error.log
+        CustomLog /var/log/apache2/xmpp-ftw.buddycloud.com-access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+        # push any non-secure requests to HTTPS
         ServerName  web-hosting.buddycloud.com
         ServerAlias *.buddycloud.com
         RewriteEngine On
