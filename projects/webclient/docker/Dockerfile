@@ -16,12 +16,6 @@ RUN apt-add-repository ppa:ondrej/apache2
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y wget apache2
 
-ADD webclient.deb /tmp/webclient.deb
-RUN dpkg -i /tmp/webclient.deb | true
-ADD buddycloud.net /etc/apache2/sites-available/000-default.conf
-RUN a2ensite 000-default.conf
-ADD config.js /usr/share/buddycloud-webclient/config.js
-
 RUN a2enmod rewrite
 RUN a2enmod proxy
 RUN a2enmod proxy_wstunnel
@@ -30,7 +24,17 @@ RUN a2enmod headers
 RUN a2enmod expires
 RUN a2enmod rewrite
 ADD replace-api-hosting-vars /tmp/replace-api-hosting-vars
-RUN mkdir -p /etc/apache2/certs/;rm /etc/apache2/conf-enabled/*
+ADD apache2.conf /etc/apache2/apache2.conf
+RUN mkdir -p /etc/apache2/certs/
+RUN touch /etc/apache2/sites-available/buddycloud-apache-virtual-host; ln -s /etc/apache2/sites-available/buddycloud-apache-virtual-host /etc/apache2/sites-available/buddycloud-apache-virtual-host.conf
+RUN service apache2 restart
 
-ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; ls /etc/apache2/sites-enabled; tail -F /var/log/apache2/*.log & apache2ctl -D FOREGROUND
+ADD webclient.deb /tmp/webclient.deb
+RUN dpkg -i --force-confnew /tmp/webclient.deb
+RUN a2dissite buddycloud-apache-virtual-host; rm /etc/apache2/sites-available/buddycloud-apache-virtual-host*
+ADD buddycloud.net /etc/apache2/sites-available/000-default.conf
+RUN a2ensite 000-default.conf
+ADD config.js /usr/share/buddycloud-webclient/config.js
+
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; tail -F /var/log/apache2/*.log
 EXPOSE 80 443

@@ -42,8 +42,13 @@ SSLStrictSNIVHostCheck on
 <VirtualHost *:443>
         ServerName xmpp-ftw.buddycloud.com
         KeepAlive On
-        ProxyPass / http://si.buddycloud.com:6000/
-        ProxyPassReverse / http://si.buddycloud.com:6000/
+
+        ProxyPass /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
+	ProxyPassReverse /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
+
+	ProxyPass /primus/ http://si.buddycloud.com:6000/primus/
+	ProxyPassReverse /primus/ http://si.buddycloud.com:6000/primus/
+
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
         SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
