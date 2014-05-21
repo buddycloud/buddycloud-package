@@ -35,9 +35,9 @@ import tigase.db.*
 import tigase.xml.*
 import tigase.vhosts.*
 
-
 def JID = "domainjid"
 
+def sessions = (Map<BareJID, XMPPSession>)userSessions
 def vhost_man = (VHostManagerIfc)vhostMan
 def p = (Packet)packet
 def user_repo = (UserRepository)userRepository
@@ -69,17 +69,17 @@ try {
 	domainBareJID = BareJID.bareJIDInstance(domainJid)
 	
 	def users = user_repo.getUsers();
-	def users_list = [];
 	users.each {
 		if (it.getDomain() != null && it.getDomain().equals(domainBareJID.getDomain())) {
-			users_list += it.getLocalpart();
+		    XMPPSession session = sessions.get(BareJID.bareJIDInstanceNS(it.toString()))
+			Command.addTextField(result, "user", 
+	        	"{\"jid\": \"" + it + "\", \"local\": \"" + it.getLocalpart() + "\"" + 
+	        	", \"active\": " + (session != null) + 
+	        	", \"activeFor\": " + (session != null ? session.getLiveTime() : 0) + "}");
 		}
 	}
 	
-	Command.addFieldMultiValue(result, "users", users_list);
-
-} catch (TigaseDBException ex) {
-	Command.addTextField(result, "Note", "Problem accessing database, users not listed.");
+} catch (Exception ex) {
+	Command.addTextField(result, "Note", "Problem accessing database, users not listed. ");
 }
 return result
-
