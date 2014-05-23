@@ -46,6 +46,9 @@ SSLStrictSNIVHostCheck on
         ProxyPass /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
 	ProxyPassReverse /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
 
+	ProxyPass /ws-xmpp ws://si.buddycloud.com:5290/
+        ProxyPassReverse /ws-xmpp ws://si.buddycloud.com:5290/
+
 	ProxyPass / http://si.buddycloud.com:6000/
 	ProxyPassReverse / http://si.buddycloud.com:6000/
 
