@@ -2,4 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker run -d -name=$IMAGE_NAME -v /srv/hosting:/srv/hosting -P -p 3000:3000 -t $IMAGE_NAME
+docker run -d -name=$IMAGE_NAME -v /srv/hosting:/srv/hosting -v /var/log/hosting:/var/log/hosting -P -p 3000:3000 -t $IMAGE_NAME
