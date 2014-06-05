@@ -25,5 +25,5 @@ ADD package.json /usr/share/xmpp-ftw/package.json
 RUN cd /usr/share/xmpp-ftw; npm install
 
 # run the endpoint
-ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; npm start
+ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; npm start > /var/log/xmpp-ftw/xmpp-ftw.log
 EXPOSE 6000
