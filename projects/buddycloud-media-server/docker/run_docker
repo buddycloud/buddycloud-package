@@ -2,4 +2,4 @@
 
 IMAGE_NAME=$1
 
-docker run -d -name=$IMAGE_NAME -v /var/lib/media-storage:/var/lib/media-storage -P -p 60080:60080  -t $IMAGE_NAME
+docker run -d -name=$IMAGE_NAME -v /var/lib/media-storage:/var/lib/media-storage -v /var/log/buddycloud-media-server:/var/log/buddycloud-media-server -P -p 60080:60080  -t $IMAGE_NAME
