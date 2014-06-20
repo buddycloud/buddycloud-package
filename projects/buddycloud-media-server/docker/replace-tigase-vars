@@ -1,4 +1,0 @@
-#!/bin/bash
-
-sed -i "s/#TIGASE_HOST#/$TIGASE_PORT_5270_TCP_ADDR/g" mediaserver.properties
-

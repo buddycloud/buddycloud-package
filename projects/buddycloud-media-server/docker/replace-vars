@@ -1,0 +1,7 @@
+#!/bin/bash
+source /srv/build/mediaserverrc.sh
+env | cut -d'=' -f1 | while read KEY; do
+  VALUE=${!KEY}
+  KEY="#$KEY#"
+  sed -i "s|$KEY|$VALUE|g" mediaserver.properties 2&>1 > /dev/null
+done
