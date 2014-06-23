@@ -36,5 +36,11 @@ ADD buddycloud.net /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
 ADD config.js /usr/share/buddycloud-webclient/config.js
 
+#logstash stuff
+RUN echo deb http://packages.elasticsearch.org/logstash/1.4/debian stable main >> /etc/apt/sources.list.d/logstash.list
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y logstash
+ADD logstash.conf /etc/logstash/conf.d/logstash.conf
+
 ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; tail -F /var/log/apache2/*.log
 EXPOSE 80 443
