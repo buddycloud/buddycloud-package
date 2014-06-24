@@ -40,7 +40,7 @@ ADD config.js /usr/share/buddycloud-webclient/config.js
 RUN wget -O- http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
 RUN echo deb http://packages.elasticsearch.org/logstash/1.4/debian stable main >> /etc/apt/sources.list.d/logstash.list
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y logstash openjdk-7-jre-headless
+RUN apt-get install -y logstash openjdk-7-jre-headless
 ADD logstash.conf /etc/logstash/conf.d/logstash.conf
 RUN service logstash start
 
