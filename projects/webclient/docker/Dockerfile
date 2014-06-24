@@ -42,9 +42,7 @@ RUN echo deb http://packages.elasticsearch.org/logstash/1.4/debian stable main >
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y logstash openjdk-7-jre-headless
 ADD logstash.conf /etc/logstash/conf.d/logstash.conf
-ADD run /opt/logstash
-RUN chmod x+u /opt/logstash/run
-RUN /opt/logstash/run
+RUN service logstash start
 
 ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; tail -F /var/log/apache2/*.log
 EXPOSE 80 443
