@@ -44,8 +44,6 @@ ADD config.js /usr/share/buddycloud-webclient/config.js
 #RUN service logstash restart
 #RUN /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/logstash.conf -l /var/log/logstash/logstash.log &
 
-RUN apt-get install -y git golang gcc ruby ruby-dev rubygems irb ri rdoc build-essential libopenssl-ruby1.9.1 libssl-dev zlib1g-dev
-
 #install dep
 ADD logstash-forwarder_0.3.1_amd64.deb /tmp/logstash-forwarder_0.3.1_amd64.deb
 RUN dpkg -i /tmp/logstash-forwarder/logstash-forwarder_0.3.1_amd64.deb
