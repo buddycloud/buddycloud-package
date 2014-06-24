@@ -41,7 +41,7 @@ RUN wget -O- http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key a
 RUN echo deb http://packages.elasticsearch.org/logstash/1.4/debian stable main >> /etc/apt/sources.list.d/logstash.list
 RUN apt-get update && apt-get install -y logstash=1.4.1-1-bd507eb
 ADD logstash.conf /etc/logstash/conf.d/logstash.conf
-RUN /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/logstash.conf -l /var/log/logstash/logstash.log
+RUN /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/logstash.conf -l /var/log/logstash/logstash.log &
 
 ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; tail -F /var/log/apache2/*.log; tail -F /var/log/logstash/*
 EXPOSE 80 443
