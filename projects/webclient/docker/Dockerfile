@@ -44,5 +44,5 @@ ADD logstash.conf /etc/logstash/conf.d/logstash.conf
 RUN service logstash restart
 #RUN /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/logstash.conf -l /var/log/logstash/logstash.log &
 
-ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; service logstash restart; tail -F /var/log/apache2/*.log; 
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/logstash.conf -l /var/log/logstash/logstash.log &; tail -F /var/log/apache2/*.log; 
 EXPOSE 80 443
