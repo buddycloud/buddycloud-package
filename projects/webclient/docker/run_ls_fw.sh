@@ -12,7 +12,23 @@ cat << EOF > /tmp/config.json
   "files": [
     {
       "paths": [ "/var/log/apache2/web.buddycloud.com-access.log" ],
-      "fields": { "type": "web-buddycloud-access" }
+      "fields": { "type": "web_apache_access" }
+    },
+    {
+      "paths": [ "/var/log/apache2/other_vhosts_access.log" ],
+      "fields": { "type": "other_vhosts_apache_access" }
+    },
+    {
+      "paths": [ "/var/log/apache2/hosting.buddycloud.com-access.log" ],
+      "fields": { "type": "hosting_apache_access" }
+    },
+    {
+      "paths": [ "/var/log/apache2/xmpp-ftw.buddycloud.com-access.log" ],
+      "fields": { "type": "xmpp-ftw_apache_access" }
+    },
+    {
+      "paths": [ "/var/log/apache2/error.log" ],
+      "fields": { "type": "general_apache_error" }
     }
   ]
 }
