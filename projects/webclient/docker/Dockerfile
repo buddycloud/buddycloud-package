@@ -52,5 +52,5 @@ RUN dpkg -i /tmp/logstash-forwarder_0.3.1_amd64.deb
 ADD run_ls_fw.sh /usr/local/bin/run_ls_fw.sh
 RUN chmod 755 /usr/local/bin/run_ls_fw.sh
 
-ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restarti; /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log; 
+ENTRYPOINT mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.com.pem /etc/apache2/certs/buddycloud.com.pem;/tmp/replace-api-hosting-vars; cat /etc/apache2/apache2.conf; service apache2 restart; /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log; 
 EXPOSE 80 443
