@@ -46,7 +46,7 @@ ADD config.js /usr/share/buddycloud-webclient/config.js
 
 #install dep
 ADD logstash-forwarder_0.3.1_amd64.deb /tmp/logstash-forwarder_0.3.1_amd64.deb
-RUN dpkg -i /tmp/logstash-forwarder/logstash-forwarder_0.3.1_amd64.deb
+RUN dpkg -i /tmp/logstash-forwarder_0.3.1_amd64.deb
 
 ## Add and make run.sh excecutable
 ADD run_ls_fw.sh /usr/local/bin/run_ls_fw.sh
