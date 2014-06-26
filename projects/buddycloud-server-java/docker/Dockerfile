@@ -30,4 +30,4 @@ ADD log4j.properties /usr/share/buddycloud-server-java/log4j.properties
 ADD replace-tigase-vars /usr/share/buddycloud-server-java/replace-tigase-vars
 
 # run java-server
-ENTRYPOINT cd /usr/share/buddycloud-server-java; env; ./replace-tigase-vars; java -jar channelserver-jar-with-dependencies.jar
+ENTRYPOINT cd /usr/share/buddycloud-server-java; ./replace-vars; java -jar channelserver-jar-with-dependencies.jar
