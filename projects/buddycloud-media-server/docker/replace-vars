@@ -1,5 +1,7 @@
 #!/bin/bash
+source /srv/build/commonrc.sh
 source /srv/build/mediaserverrc.sh
+
 env | cut -d'=' -f1 | while read KEY; do
   VALUE=${!KEY}
   KEY="#$KEY#"
