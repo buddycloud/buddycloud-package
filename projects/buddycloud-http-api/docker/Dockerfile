@@ -26,5 +26,5 @@ ADD config.js /usr/share/buddycloud-http-api/config.js
 ADD replace-media-server-vars /usr/share/buddycloud-http-api/replace-media-server-vars
 
 # run the httpapi
-ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; ./replace-media-server-vars; cat config.js; node server.js > /var/log/buddycloud-http-api/buddycloud-http-api.log
+ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; ./replace-vars; cat config.js; node server.js > /var/log/buddycloud-http-api/buddycloud-http-api.log
 EXPOSE 9123

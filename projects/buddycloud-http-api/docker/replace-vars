@@ -1,0 +1,10 @@
+#!/bin/bash
+source /srv/build/commonrc.sh
+source /srv/build/buddycloudserverrc.sh
+source /srv/build/tigaserc.sh
+
+env | cut -d'=' -f1 | while read KEY; do
+  VALUE=${!KEY}
+  KEY="#$KEY#"
+  sed -i "s|$KEY|$VALUE|g" config.js 2&>1 > /dev/null
+done
