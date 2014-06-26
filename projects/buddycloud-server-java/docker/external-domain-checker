@@ -5,7 +5,7 @@ import sys
 import os
 import urlparse
 
-db_url = 'postgres://integration_hosting:xohfeeko@db01.buddycloud.com:5432/integration_hosting'
+db_url = 'postgres://#HOSTING_JDBC_DB_USER#:#HOSTING_JDBC_DB_PASS#@#JDBC_DB_URL#/#HOSTING_JDBC_DB_NAME#'
 parsed_url = urlparse.urlparse(db_url)
 
 username = parsed_url.username

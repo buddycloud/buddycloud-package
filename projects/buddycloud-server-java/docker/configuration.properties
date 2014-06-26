@@ -1,15 +1,15 @@
-xmpp.host=si.buddycloud.com
-xmpp.port=5270
-xmpp.secretkey=tellnoone
+xmpp.host=#XMPP_COMPONENT_HOST#
+xmpp.port=#XMPP_COMPONENT_PORT#
+xmpp.secretkey=#CHANNELS_XMPP_COMPONENT_PASSWORD#
 
 server.domain.checker=/usr/bin/external-domain-checker
-server.domain.channels=cs.buddycloud.com
+server.domain.channels=#CHANNELS_XMPP_COMPONENT_SUBDOMAIN#
 
 jdbc.proxool.alias=channelserver
-jdbc.proxool.driver-url=jdbc:postgresql://db01.buddycloud.com:5432/integration_buddycloudserver
-jdbc.proxool.driver-class=org.postgresql.Driver
-jdbc.user=integration_buddycloudserver
-jdbc.password=xohfeeko
+jdbc.proxool.driver-url=jdbc:postgresql://#JDBC_DB_URL#/#CHANNELS_JDBC_DB_NAME#
+jdbc.proxool.driver-class=#JDBC_DRIVER_CLASS#
+jdbc.user=#CHANNELS_JDBC_DB_USER#
+jdbc.password=#CHANNELS_JDBC_DB_PASS#
 jdbc.proxool.maximum-connection-count=10
 jdbc.proxool.house-keeping-test-sql=select CURRENT_DATE
 
