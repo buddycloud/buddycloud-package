@@ -1,4 +1,0 @@
-#!/bin/bash
-
-HOSTING_ADMIN_PASS=$(cat /srv/hosting/admin-pass)
-sed -i "s/#HOSTING_ADMIN_PASS#/$HOSTING_ADMIN_PASS/g" hosting.cfg
