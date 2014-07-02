@@ -18,7 +18,6 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb
 # update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
-ADD replace-vars /usr/share/buddycloud-media-server/replace-vars
 
-ENTRYPOINT cd /usr/share/buddycloud-media-server; ./replace-vars; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
+ENTRYPOINT cd /usr/share/buddycloud-media-server; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
 EXPOSE 60080
