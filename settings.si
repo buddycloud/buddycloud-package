@@ -12,3 +12,6 @@ PACKAGE_PROJECT=/root/buddycloud-package
 # How much time the script will wait to 
 # check if it is running
 WAIT_RUN_TIME=10
+
+# Env-specific configuration folder
+CONF_FOLDER=/srv/build/si/
