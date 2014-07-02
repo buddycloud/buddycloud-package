@@ -31,5 +31,5 @@ ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
 ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
 # run tigase
-ENTRYPOINT cd /opt/tigase-server; ./replace-vars; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
+ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
 EXPOSE 5222 5269 5270 5290
