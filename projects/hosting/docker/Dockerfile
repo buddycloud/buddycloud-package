@@ -12,6 +12,7 @@ RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y python-setuptools python-dev postgresql-server-dev-9.1 libsqlite3-dev python dbconfig-common build-essential
+RUN apt-get install --no-install-recommends -y python-sqlalchemy
 
 ADD hosting.deb /tmp/hosting.deb
 RUN /bin/echo v1
