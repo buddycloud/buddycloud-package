@@ -4,22 +4,22 @@ SSLStrictSNIVHostCheck on
         ServerAlias buddycloud.*
         RewriteEngine On
         RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
-        RewriteRule ^(.*)$ https://hosted.buddycloud.com/?h=%1
+        RewriteRule ^(.*)$ https://hosted.#BC_DOMAIN#/?h=%1
 </VirtualHost>
 
 <VirtualHost *:80>
         # push any non-secure requests to HTTPS
-        ServerName  hosting.buddycloud.com
+        ServerName  hosting.#BC_DOMAIN#
         RewriteEngine On
         RewriteCond %{HTTPS} off
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 
 <VirtualHost *:443>
-        ServerName hosting.buddycloud.com
+        ServerName hosting.#BC_DOMAIN#
         KeepAlive On
-        ProxyPass / http://si.buddycloud.com:3000/
-        ProxyPassReverse / http://si.buddycloud.com:3000/
+        ProxyPass / http://#BC_ENV_HOST#:3000/
+        ProxyPassReverse / http://#BC_ENV_HOST#:3000/
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
         SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
@@ -33,24 +33,24 @@ SSLStrictSNIVHostCheck on
 
 <VirtualHost *:80>
         # push any non-secure requests to HTTPS
-        ServerName  xmpp-ftw.buddycloud.com
+        ServerName  xmpp-ftw.#BC_DOMAIN#
         RewriteEngine On
         RewriteCond %{HTTPS} off
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 
 <VirtualHost *:443>
-        ServerName xmpp-ftw.buddycloud.com
+        ServerName xmpp-ftw.#BC_DOMAIN#
         KeepAlive On
 
-        ProxyPass /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
-	ProxyPassReverse /primus/1/websocket ws://si.buddycloud.com:6000/primus/1/websocket
+        ProxyPass /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
+	ProxyPassReverse /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
 
-	ProxyPass /ws-xmpp ws://si.buddycloud.com:5290/
-        ProxyPassReverse /ws-xmpp ws://si.buddycloud.com:5290/
+	ProxyPass /ws-xmpp ws://#BC_ENV_HOST#:5290/
+        ProxyPassReverse /ws-xmpp ws://#BC_ENV_HOST#:5290/
 
-	ProxyPass / http://si.buddycloud.com:6000/
-	ProxyPassReverse / http://si.buddycloud.com:6000/
+	ProxyPass / http://#BC_ENV_HOST#:6000/
+	ProxyPassReverse / http://#BC_ENV_HOST#:6000/
 
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
@@ -65,16 +65,16 @@ SSLStrictSNIVHostCheck on
 
 <VirtualHost *:80>
         # push any non-secure requests to HTTPS
-        ServerName  web-hosting.buddycloud.com
-        ServerAlias *.buddycloud.com
+        ServerName  web-hosting.#BC_DOMAIN#
+        ServerAlias *.#BC_DOMAIN#
         RewriteEngine On
         RewriteCond %{HTTPS} off
         RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 
 <VirtualHost *:443>
-        ServerName  web-hosting.buddycloud.com
-        ServerAlias *.buddycloud.com
+        ServerName  web-hosting.#BC_DOMAIN#
+        ServerAlias *.#BC_DOMAIN#
         SSLEngine On
         SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
         SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
@@ -114,6 +114,6 @@ SSLStrictSNIVHostCheck on
         AddType application/x-web-app-manifest+json .webapp
 
         KeepAlive On
-        ProxyPass /api/ http://si.buddycloud.com:9123/
-        ProxyPassReverse /api/ http://si.buddycloud.com:9123/
+        ProxyPass /api/ http://#BC_ENV_HOST#:9123/
+        ProxyPassReverse /api/ http://#BC_ENV_HOST#:9123/
 </VirtualHost>
