@@ -30,6 +30,10 @@ ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
 ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
+# create hosting XMPP account
+ADD create-hosting-account.sh /opt/tigase-server/create-hosting-account.sh
+RUN bash /opt/tigase-server/create-hosting-account.sh
+
 # run tigase
 ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
 EXPOSE 5222 5269 5270 5290
