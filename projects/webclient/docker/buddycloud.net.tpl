@@ -21,10 +21,10 @@ SSLStrictSNIVHostCheck on
         ProxyPass / http://#BC_ENV_HOST#:3000/
         ProxyPassReverse / http://#BC_ENV_HOST#:3000/
         SSLEngine On
-        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
-        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.pem
         
         LogLevel alert
         ErrorLog  /var/log/apache2/hosting.buddycloud.com-error.log
@@ -53,10 +53,10 @@ SSLStrictSNIVHostCheck on
 	ProxyPassReverse / http://#BC_ENV_HOST#:6000/
 
         SSLEngine On
-        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
-        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.pem
 
         LogLevel alert
         ErrorLog  /var/log/apache2/xmpp-ftw.buddycloud.com-error.log
@@ -76,10 +76,10 @@ SSLStrictSNIVHostCheck on
         ServerName  web-hosting.#BC_DOMAIN#
         ServerAlias *.#BC_DOMAIN#
         SSLEngine On
-        SSLCertificateFile      /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.com.pem
-        SSLCertificateChainFile /etc/apache2/certs/buddycloud.com.pem
-        SSLCACertificateFile    /etc/apache2/certs/buddycloud.com.pem
+        SSLCertificateFile      /etc/apache2/certs/buddycloud.pem
+        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.pem
+        SSLCertificateChainFile /etc/apache2/certs/buddycloud.pem
+        SSLCACertificateFile    /etc/apache2/certs/buddycloud.pem
         DocumentRoot /usr/share/buddycloud-webclient/
         LogLevel alert
         ErrorLog  /var/log/apache2/web.buddycloud.com-error.log
