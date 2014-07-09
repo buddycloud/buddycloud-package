@@ -2,8 +2,8 @@
 --user-db=pgsql
 --user-db-uri=jdbc:postgresql://#JDBC_DB_URL#/#TIGASE_JDBC_DB_NAME#?user=#TIGASE_JDBC_DB_USER#&password=#TIGASE_JDBC_DB_PASS#&useUnicode=true&characterEncoding=UTF-8&autoCreateUser=true
 config-type = --gen-config-all
-basic-conf/virt-hosts-cert-*=/srv/secret/buddycloud.com.pem.nochain
-basic-conf/virt-hosts-cert-buddycloud.net=/srv/secret/buddycloud.com.pem.nochain
+basic-conf/virt-hosts-cert-*=/srv/secret/buddycloud.pem
+basic-conf/virt-hosts-cert-buddycloud.net=/srv/secret/buddycloud.pem
 --vhost-tls-required = true
 --hardened-mode = true
 basic-conf/auth-repo-params/sasl-mechs=PLAIN,ANONYMOUS,EXTERNAL
