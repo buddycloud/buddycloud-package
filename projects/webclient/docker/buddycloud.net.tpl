@@ -4,7 +4,7 @@ SSLStrictSNIVHostCheck on
         ServerAlias buddycloud.*
         RewriteEngine On
         RewriteCond %{HTTP_HOST} ^buddycloud\.(.*)$
-        RewriteRule ^(.*)$ https://hosted.#BC_DOMAIN#/?h=%1
+        RewriteRule ^(.*)$ https://http.#BC_DOMAIN#/?h=%1
 </VirtualHost>
 
 <VirtualHost *:80>
@@ -29,38 +29,6 @@ SSLStrictSNIVHostCheck on
         LogLevel alert
         ErrorLog  /var/log/apache2/hosting.buddycloud.com-error.log
         CustomLog /var/log/apache2/hosting.buddycloud.com-access.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
-        # push any non-secure requests to HTTPS
-        ServerName  xmpp-ftw.#BC_DOMAIN#
-        RewriteEngine On
-        RewriteCond %{HTTPS} off
-        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-</VirtualHost>
-
-<VirtualHost *:443>
-        ServerName xmpp-ftw.#BC_DOMAIN#
-        KeepAlive On
-
-        ProxyPass /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
-	ProxyPassReverse /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
-
-	ProxyPass /ws-xmpp ws://#BC_ENV_HOST#:5290/
-        ProxyPassReverse /ws-xmpp ws://#BC_ENV_HOST#:5290/
-
-	ProxyPass / http://#BC_ENV_HOST#:6000/
-	ProxyPassReverse / http://#BC_ENV_HOST#:6000/
-
-        SSLEngine On
-        SSLCertificateFile      /etc/apache2/certs/buddycloud.pem
-        SSLCertificateKeyFile   /etc/apache2/certs/buddycloud.pem
-        SSLCertificateChainFile /etc/apache2/certs/buddycloud.pem
-        SSLCACertificateFile    /etc/apache2/certs/buddycloud.pem
-
-        LogLevel alert
-        ErrorLog  /var/log/apache2/xmpp-ftw.buddycloud.com-error.log
-        CustomLog /var/log/apache2/xmpp-ftw.buddycloud.com-access.log combined
 </VirtualHost>
 
 <VirtualHost *:80>
@@ -116,4 +84,14 @@ SSLStrictSNIVHostCheck on
         KeepAlive On
         ProxyPass /api/ http://#BC_ENV_HOST#:9123/
         ProxyPassReverse /api/ http://#BC_ENV_HOST#:9123/
+        
+        ProxyPass /xmpp-ftw/primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
+	ProxyPassReverse /xmpp-ftw/primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
+
+	ProxyPass /ws-xmpp ws://#BC_ENV_HOST#:5290/
+        ProxyPassReverse /ws-xmpp ws://#BC_ENV_HOST#:5290/
+
+	ProxyPass /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
+	ProxyPassReverse /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
+        
 </VirtualHost>
