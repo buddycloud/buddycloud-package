@@ -20,8 +20,9 @@ baseurl=#HOSTING_BASE_URL#
 basedomain=#HOSTING_BASE_DOMAIN#
 tsigkeyname=#HOSTING_DNS_KEY_NAME#
 tsigkeysecret=#HOSTING_DNS_KEY_SECRET#
-arecord=#HOSTING_A_RECORD#
-csrecord=#CHANNELS_XMPP_COMPONENT_SUBDOMAIN#
+http_arecord=#HOSTING_A_RECORD#
+s2s_arecord=#HOSTING_A_RECORD#
+c2s_arecord=#HOSTING_A_RECORD#
 bindhost=#HOSTING_DNS_HOST#
 
 [smtp]
