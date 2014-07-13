@@ -62,6 +62,8 @@ SSLStrictSNIVHostCheck on
         RewriteCond %{REQUEST_URI} !^/config\.js$
         RewriteCond %{REQUEST_URI} !^/manifest\.webapp$
         RewriteCond %{REQUEST_URI} !^/api/
+        RewriteCond %{REQUEST_URI} !^/xmpp-ftw/
+        RewriteCond %{REQUEST_URI} !^/ws-xmpp
         RewriteCond %{REQUEST_URI} !^(.*)\.html$
         RewriteCond %{REQUEST_URI} !^/favicon.ico$
         RewriteRule ^(.*)$ /index.html
