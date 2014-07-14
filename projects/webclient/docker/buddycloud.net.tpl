@@ -93,7 +93,7 @@ SSLStrictSNIVHostCheck on
 	ProxyPass /ws-xmpp ws://#BC_ENV_HOST#:5290/
         ProxyPassReverse /ws-xmpp ws://#BC_ENV_HOST#:5290/
 
-	ProxyPass /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
-	ProxyPassReverse /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
+	ProxyPass /xmpp-ftw http://#BC_ENV_HOST#:6000/
+	ProxyPassReverse /xmpp-ftw http://#BC_ENV_HOST#:6000/
         
 </VirtualHost>
