@@ -33,7 +33,8 @@ var options = {
         'htmlfile',
         'xhr-polling',
         'jsonp-polling'
-    ]
+    ],
+    pathname: '/xmpp-ftw/primus'
 }
 
 var primus = new Primus(server, options)
