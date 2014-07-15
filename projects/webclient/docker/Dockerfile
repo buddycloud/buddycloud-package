@@ -49,7 +49,8 @@ RUN dpkg -i /tmp/logstash-forwarder_0.3.1_amd64.deb
 
 ## Add and make run.sh excecutable
 ADD run_ls_fw.sh /usr/local/bin/run_ls_fw.sh
+ADD log.list /tmp/log.list
 RUN chmod 755 /usr/local/bin/run_ls_fw.sh
 
-ENTRYPOINT mkdir -p /var/www/; touch /var/www/index.html; mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; cat /etc/apache2/apache2.conf; service apache2 restart; /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log; 
+ENTRYPOINT mkdir -p /var/www/; touch /var/www/index.html; mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; cat /etc/apache2/apache2.conf; service apache2 restart; cd /tmp; /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log; 
 EXPOSE 80 443
