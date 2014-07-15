@@ -67,10 +67,11 @@ SSLStrictSNIVHostCheck on
         RewriteCond %{REQUEST_URI} !^(.*)\.html$
         RewriteCond %{REQUEST_URI} !^/favicon.ico$
         RewriteRule ^(.*)$ /index.html
-        #<IfModule mod_header.c>
-                SetEnvIf Origin "http(s)?://(.+)" AccessControlAllowOrigin=$0
-                Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
-        #</IfModule>
+
+        # Set CORS header        
+        SetEnvIf Origin "http(s)?://(.+)" AccessControlAllowOrigin=$0
+        Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+
         # Speed up the website
         FileETag                             None
         ExpiresActive On
@@ -87,13 +88,16 @@ SSLStrictSNIVHostCheck on
         ProxyPass /api/ http://#BC_ENV_HOST#:9123/
         ProxyPassReverse /api/ http://#BC_ENV_HOST#:9123/
         
-        ProxyPass /xmpp-ftw/primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
-	ProxyPassReverse /xmpp-ftw/primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
+        ProxyPass /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
+	ProxyPassReverse /primus/1/websocket ws://#BC_ENV_HOST#:6000/primus/1/websocket
 
 	ProxyPass /ws-xmpp ws://#BC_ENV_HOST#:5290/
         ProxyPassReverse /ws-xmpp ws://#BC_ENV_HOST#:5290/
 
-	ProxyPass /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
-	ProxyPassReverse /xmpp-ftw/ http://#BC_ENV_HOST#:6000/
+	ProxyPass /primus/ http://#BC_ENV_HOST#:6000/primus/
+	ProxyPassReverse /primus/ http://#BC_ENV_HOST#:6000/primus/
+
+        ProxyPass /scripts/primus/ http://#BC_ENV_HOST#:6000/scripts/primus/
+        ProxyPassReverse /scripts/primus/ http://#BC_ENV_HOST#:6000/scripts/primus/        
         
 </VirtualHost>
