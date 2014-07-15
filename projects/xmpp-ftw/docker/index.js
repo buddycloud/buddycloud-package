@@ -34,12 +34,11 @@ var options = {
         'xhr-polling',
         'jsonp-polling'
     ],
-    pathname: '/xmpp-ftw/primus'
 }
 
 var primus = new Primus(server, options)
 primus.use('emitter', Emitter)
-primus.save(__dirname + '/public/scripts/primus.js')
+primus.save(__dirname + '/public/scripts/primus/primus.js')
 
 primus.on('connection', function(socket) {
     console.log('Websocket connection made')

@@ -1,5 +1,5 @@
 # Ubuntu/precise is the main distribution
-FROM ubuntu:trusty
+FROM ubuntu:precise
 
 ENV http_proxy http://172.17.42.1:3128
 
@@ -15,10 +15,12 @@ RUN apt-get update
 RUN apt-get install --no-install-recommends -y nodejs
 
 # install the xmpp-ftw
-RUN mkdir -p /usr/share/xmpp-ftw/public/scripts
-ADD index.js /usr/share/xmpp-ftw/index.js
 ADD package.json /usr/share/xmpp-ftw/package.json
 RUN cd /usr/share/xmpp-ftw; npm config set registry http://registry.npmjs.org/; npm install
+ADD index.js /usr/share/xmpp-ftw/index.js
+RUN mkdir -p /usr/share/xmpp-ftw/public/scripts/primus
+
+ENV http_proxy ""
 
 # run the endpoint
 ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; npm start >> /var/log/xmpp-ftw/xmpp-ftw.log
