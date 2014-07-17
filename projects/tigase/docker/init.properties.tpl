@@ -15,5 +15,5 @@ sess-man/plugins-conf/whitelist-registration-only = true
 sess-man/plugins-conf/registration-whitelist = 172.16.0.0/12
 basic-conf/logging/java.util.logging.FileHandler.pattern=/var/log/tigase/tigase.log
 --comp-class-1 = tigase.server.ext.ComponentProtocol
---external = #CHANNELS_XMPP_COMPONENT_SUBDOMAIN#:#CHANNELS_XMPP_COMPONENT_PASSWORD#:listen:#XMPP_CLIENT_PORT#,#MEDIA_XMPP_COMPONENT_SUBDOMAIN#:#MEDIA_XMPP_COMPONENT_PASSWORD#
+--external = #CHANNELS_XMPP_COMPONENT_SUBDOMAIN#:#CHANNELS_XMPP_COMPONENT_PASSWORD#:listen:#XMPP_COMPONENT_PORT#,#MEDIA_XMPP_COMPONENT_SUBDOMAIN#:#MEDIA_XMPP_COMPONENT_PASSWORD#
 --sm-plugins = +jabber:iq:auth,+urn:ietf:params:xml:ns:xmpp+sasl,+urn:ietf:params:xml:ns:xmpp-bind,+urn:ietf:params:xml:ns:xmpp-session,+jabber:iq:register,+jabber:iq:roster,+presence,+jabber:iq:privacy,+jabber:iq:version,+http://jabber.org/protocol/stats,+starttls,+msgoffline,+vcard-temp,+http://jabber.org/protocol/commands,+jabber:iq:private,+urn:xmpp:ping,-basic-filter,-domain-filter,+pep,-zlib
