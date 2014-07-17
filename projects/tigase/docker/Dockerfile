@@ -1,6 +1,8 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
+ENV http_proxy http://172.17.42.1:3128
+
 # sanitize all package lists
 RUN echo > /etc/apt/sources.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
@@ -33,6 +35,8 @@ ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 # create hosting XMPP account
 ADD create-hosting-account.sh /opt/tigase-server/create-hosting-account.sh
 RUN bash /opt/tigase-server/create-hosting-account.sh
+
+ENV http_proxy ""
 
 # run tigase
 ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
