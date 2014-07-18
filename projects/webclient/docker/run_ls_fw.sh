@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT=/tmp/config.json
-config=( $(<log.list) )
+config=( $(</tmp/log.list) )
 i=0
 
 
