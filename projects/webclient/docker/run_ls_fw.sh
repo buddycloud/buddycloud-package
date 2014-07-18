@@ -35,7 +35,7 @@ echo -en '
 }' >> $OUTPUT
 
 
-/opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/config.json 2>&1 >> /tmp/out.logstash.2 &
+/opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/config.json &
 
 
 
