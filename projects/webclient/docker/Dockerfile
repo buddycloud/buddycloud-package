@@ -52,5 +52,5 @@ ADD run_ls_fw.sh /usr/local/bin/run_ls_fw.sh
 ADD log.list /tmp/log.list
 RUN chmod 755 /usr/local/bin/run_ls_fw.sh
 
-ENTRYPOINT mkdir -p /var/www/; touch /var/www/index.html; mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; cat /etc/apache2/apache2.conf; service apache2 restart; /bin/bash /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log; 
+ENTRYPOINT mkdir -p /var/www/; touch /var/www/index.html; mkdir -p /var/run/apache2; ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; cat /etc/apache2/apache2.conf; service apache2 restart; /bin/bash /usr/local/bin/run_ls_fw.sh 2>&1 >> /tmp/out.logstash  ; tail -F /var/log/apache2/*.log; 
 EXPOSE 80 443
