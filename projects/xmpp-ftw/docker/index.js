@@ -49,5 +49,9 @@ primus.on('connection', function(socket) {
 
 primus.on('disconnection', function(socket) {
     console.log('Client disconnected, logging them out')
-    socket.xmppFtw.logout()
+    try {
+        socket.xmppFtw.logout()
+    } catch (e) {
+        console.log(e)
+    }
 })
