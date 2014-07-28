@@ -1,5 +1,3 @@
-SSLStrictSNIVHostCheck on
-
 <VirtualHost *:80>
         ServerAlias buddycloud.*
         RewriteEngine On
