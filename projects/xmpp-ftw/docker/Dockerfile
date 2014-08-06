@@ -27,6 +27,9 @@ RUN cd /usr/share/xmpp-ftw; npm config set registry http://registry.npmjs.org/; 
 ADD index.js /usr/share/xmpp-ftw/index.js
 RUN mkdir -p /usr/share/xmpp-ftw/public/scripts/primus
 
+# add logstash conf
+ADD logstash.conf /tmp/logstash.conf
+
 ENV http_proxy ""
 
 # run the endpoint
