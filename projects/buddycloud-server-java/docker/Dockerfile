@@ -6,13 +6,16 @@ RUN echo > /etc/apt/sources.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
+RUN rm -rvf /var/lib/apt/lists/*
 
 # add logstash sources list
-RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
-
-# add java
-RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y wget
+RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
+RUN apt-get update
+
+# add jdk
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 
