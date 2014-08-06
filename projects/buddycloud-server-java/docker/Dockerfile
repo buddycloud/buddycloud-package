@@ -8,7 +8,7 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted u
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
 # add logstash sources list
-RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
+RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
 
 # add java
 RUN rm -rvf /var/lib/apt/lists/*
