@@ -30,8 +30,11 @@ RUN mkdir -p /usr/share/xmpp-ftw/public/scripts/primus
 # add logstash conf
 ADD logstash.conf /tmp/logstash.conf
 
+# add pm2
+RUN npm install -g pm2
+
 ENV http_proxy ""
 
 # run the endpoint
-ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/xmpp-ftw; node -v; npm start
+ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/xmpp-ftw; node -v; pm2 start index.js -i 1; wait
 EXPOSE 6000
