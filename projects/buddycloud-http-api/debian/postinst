@@ -15,5 +15,6 @@ fi
 
 # Create public dir for primus
 mkdir -p /usr/share/buddycloud-http-api/public/scripts
+chown -R buddycloud:buddycloud /usr/share/buddycloud-http-api/public/scripts 
 
 #DEBHELPER#
