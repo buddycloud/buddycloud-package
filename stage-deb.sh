@@ -9,4 +9,4 @@ PACKAGE=$(echo $RELEASE | cut -d'_' -f1)
 TARGET_DIR="/var/web/downloads.buddycloud.com/packages/debian/$P_TAG/$PACKAGE/$RELEASE"
 
 ssh $P_USER@$P_HOST mkdir -p $TARGET_DIR
-scp $RELEASE* $P_USER@$P_HOST:$TARGET_DIR
+scp *$RELEASE* $P_USER@$P_HOST:$TARGET_DIR
