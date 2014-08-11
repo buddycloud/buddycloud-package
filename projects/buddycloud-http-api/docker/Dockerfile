@@ -28,6 +28,5 @@ ADD config.js /usr/share/buddycloud-http-api/config.js
 ADD logstash.conf /tmp/logstash.conf
 
 # run the httpapi
-RUN mkdir -p /usr/share/buddycloud-http-api/public/scripts
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/buddycloud-http-api; node -v; cat config.js; node server.js
 EXPOSE 9123
