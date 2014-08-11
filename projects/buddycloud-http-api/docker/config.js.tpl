@@ -11,6 +11,10 @@ exports.production = {
   friendFinderComponent: 'friend-finder.buddycloud.com',
   searchComponent: 'search.buddycloud.org',
   homeMediaRoot: 'http://#BC_ENV_HOST#:60080',
-  createUserOnSessionCreation: true
+  createUserOnSessionCreation: true,
+  logTransport: 'file',
+  logFile: '/var/log/buddycloud-http-api/buddycloud-http-api.log',
+  logLevel: 'debug',
+  logUseJson: false
 };
 
