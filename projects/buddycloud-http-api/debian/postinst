@@ -13,4 +13,7 @@ if [ "$1" = "configure" ]; then
 		buddycloud
 fi
 
+# Create public dir for primus
+mkdir -p /usr/share/buddycloud-http-api/public/scripts
+
 #DEBHELPER#
