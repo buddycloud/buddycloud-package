@@ -4,12 +4,6 @@ FROM ubuntu:precise
 ENV http_proxy http://172.17.42.1:3128
 ENV https_proxy http://172.17.42.1:3128
 
-# sanitize all package lists
-RUN echo > /etc/apt/sources.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
-
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl postgresql-client
