@@ -22,14 +22,14 @@ while [ $((i+1)) -lt ${#config[@]} ]; do
 
   echo -en '\n\t{
 	"paths": [ "'"${config[i]}"'" ],
-	"fields": { "type": "'"${config[$((i+1))]}"'" }
+	"fields": { "type": "'"${config[$((i+1))]}"'", "env": "#DEPLOYMENT_ENV#" }
 	},' >> $OUTPUT
   i=$((i+2))
 done
 echo -en '
     {
       "paths": [ "/var/log/apache2/error.log" ],
-      "fields": { "type": "general_apache_error" }
+      "fields": { "type": "general_apache_error", "env": "#DEPLOYMENT_ENV#" }
     }
   ]
 }' >> $OUTPUT
