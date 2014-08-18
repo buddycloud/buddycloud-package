@@ -10,5 +10,5 @@ TARGET_DIR="/var/web/downloads.buddycloud.com/packages/debian/$P_TAG/$PACKAGE/$R
 
 ssh $P_USER@$P_HOST mkdir -p $TARGET_DIR
 scp *$RELEASE* $P_USER@$P_HOST:$TARGET_DIR
-ssh $P_USER@$P_HOST ln -s $TARGET_DIR/*.deb $TARGET_DIR/../${PACKAGE}_latest.deb
+ssh $P_USER@$P_HOST ln -fs $TARGET_DIR/*.deb $TARGET_DIR/../${PACKAGE}_latest.deb
 
