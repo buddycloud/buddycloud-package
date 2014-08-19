@@ -12,4 +12,5 @@ tar -cvf $RELEASE.tar *$RELEASE*
 scp $RELEASE.tar $P_USER@$P_HOST:~
 ssh $P_USER@$P_HOST "mkdir -p $TARGET_DIR; tar -xvf ~/$RELEASE.tar -C $TARGET_DIR; \
   ln -fs $TARGET_DIR/*.deb $TARGET_DIR/../${PACKAGE}_latest.deb; rm ~/$RELEASE.tar"
+rm $RELEASE.tar
 
