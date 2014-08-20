@@ -15,7 +15,7 @@ DOCKER_PROJECT=$PACKAGE_PROJECT/projects/$PROJECT_NAME/docker
 
 # Run
 DEPLOY_USER_AT_HOST=$DEPLOY_DOCKER_USER@$DEPLOY_DOCKER_HOST
-ssh $DEPLOY_USER_AT_HOST "service stop $PROJECT_NAME | true"
+ssh $DEPLOY_USER_AT_HOST "service $PROJECT_NAME stop | true"
 ssh $DEPLOY_USER_AT_HOST "docker stop $PROJECT_NAME | true"
 ssh $DEPLOY_USER_AT_HOST "docker kill $PROJECT_NAME | true"
 ssh $DEPLOY_USER_AT_HOST "docker rm $PROJECT_NAME | true"
@@ -35,4 +35,4 @@ if [ $RUN_CHECK == 1 ]; then
   exit 1
 fi
 
-ssh $DEPLOY_USER_AT_HOST "service start $PROJECT_NAME | true"
+ssh $DEPLOY_USER_AT_HOST "service $PROJECT_NAME start | true"
