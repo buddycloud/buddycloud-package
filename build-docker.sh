@@ -36,4 +36,5 @@ fi
 # Build docker
 ssh $DEPLOY_USER_AT_HOST "cd $DOCKER_PROJECT; docker build -t $PROJECT_NAME ."
 scp $CURRENT_DIR/docker.conf $DEPLOY_USER_AT_HOST:/etc/init/$PROJECT_NAME.conf
-ssh $DEPLOY_USER_AT_HOST "sed -i 's/#PROJECT_NAME#/$PROJECT_NAME' /etc/init/$PROJECT_NAME.conf"
+PROJECT_NAME_KEY="#PROJECT_NAME#"
+ssh $DEPLOY_USER_AT_HOST 'sed -i "s|$PROJECT_NAME_KEY|$PROJECT_NAME|g" /etc/init/$PROJECT_NAME.conf'
