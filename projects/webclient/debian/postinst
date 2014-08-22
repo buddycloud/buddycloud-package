@@ -12,5 +12,6 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/CN=www.example.
  
 # enable the virtual host:
 a2ensite buddycloud-apache-virtual-host
- 
+service apache2 reload 
+
 #DEBHELPER#

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+a2dissite buddycloud-apache-virtual-host
+service apache2 reload

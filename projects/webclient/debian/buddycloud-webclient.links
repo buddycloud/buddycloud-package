@@ -1,1 +1,2 @@
 /etc/buddycloud-webclient/config.js /usr/share/buddycloud-webclient/config.js
+/etc/buddycloud-webclient/buddycloud-apache-virtual-host /etc/apache2/sites-available/buddycloud-apache-virtual-host.conf
