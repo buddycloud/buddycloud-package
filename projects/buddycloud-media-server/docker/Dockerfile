@@ -25,6 +25,10 @@ RUN apt-get install --no-install-recommends -y logstash-forwarder
 # add logstash conf
 ADD logstash.conf /tmp/logstash.conf
 
+# create hosting XMPP account
+ADD create-media-account.sh /tmp/create-media-account.sh
+RUN bash /tmp/create-media-account.sh
+
 # update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
