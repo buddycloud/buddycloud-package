@@ -36,10 +36,6 @@ ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
 ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
-# create hosting XMPP account
-ADD create-hosting-account.sh /opt/tigase-server/create-hosting-account.sh
-RUN bash /opt/tigase-server/create-hosting-account.sh
-
 ENV http_proxy ""
 ENV https_proxy ""
 
