@@ -1,11 +1,8 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
-# sanitize all package lists
-RUN echo > /etc/apt/sources.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
+ENV http_proxy http://172.17.42.1:3128
+ENV https_proxy http://172.17.42.1:3128
 
 # add java
 RUN rm -rvf /var/lib/apt/lists/*
@@ -33,6 +30,9 @@ RUN bash /tmp/create-media-account.sh
 # update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
+
+ENV http_proxy ""
+ENV https_proxy ""
 
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/buddycloud-media-server; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
 EXPOSE 60080
