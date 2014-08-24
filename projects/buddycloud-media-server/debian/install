@@ -1,5 +1,5 @@
 mediaserver.properties.example usr/share/buddycloud-media-server
 logback.xml usr/share/buddycloud-media-server
 resources/* usr/share/buddycloud-media-server/resources
-target/*.jar usr/share/buddycloud-media-server
+target/buddycloud-media-server-jar-with-dependencies.jar usr/share/buddycloud-media-server
 contrib/init.d/buddycloud-media-server etc/init.d
