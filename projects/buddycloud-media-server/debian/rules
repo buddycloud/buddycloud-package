@@ -40,5 +40,7 @@ clean::
 CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
 CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
 install/$(pkg)::
-	install -D -m 0644 resources/schema/create_schema.sql \
-	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'
+	install -D -m 0644 postgres/base.sql \
+        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'
+	cat postgres/upgrade-*.sql >> \
+            	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'	
