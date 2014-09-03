@@ -1,17 +1,3 @@
 #!/bin/bash
 
-# ensure you have the correct modules enabled in Apache
-a2enmod rewrite proxy_http ssl headers expires deflate
-
-# generates a self-signed certificate
-mkdir -p /etc/apache2/certs
-wget --no-check-certificate https://www.startssl.com/certs/sub.class1.server.ca.crt \
-    -O /etc/apache2/certs/sub.class1.server.ca.crt
-openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/CN=www.example.com" \
-    -keyout /etc/apache2/certs/EXAMPLE.COM.key -out /etc/apache2/certs/EXAMPLE.COM.pem
- 
-# enable the virtual host:
-a2ensite buddycloud-apache-virtual-host
-service apache2 restart 
-
 #DEBHELPER#
