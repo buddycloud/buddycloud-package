@@ -44,8 +44,9 @@ ADD apache2.conf /etc/apache2/apache2.conf
 RUN a2dissite buddycloud-apache-virtual-host 000-default.conf default-ssl.conf
 RUN rm -f /etc/apache2/sites-available/*; rm -f /etc/apache2/sites-enabled/*
 
-# stage buddycloud vhost
+# stage and enable buddycloud vhost
 ADD buddycloud.net /etc/apache2/sites-available/buddycloud-hosting.conf
+RUN a2ensite buddycloud-hosting.conf
 
 # install logstash
 ADD logstash-forwarder_0.3.1_amd64.deb /tmp/logstash-forwarder_0.3.1_amd64.deb
@@ -56,5 +57,5 @@ ADD run_ls_fw.sh /usr/local/bin/run_ls_fw.sh
 ADD log.list /tmp/log.list
 RUN chmod 755 /usr/local/bin/run_ls_fw.sh
 
-ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; a2ensite buddycloud-hosting.conf; service apache2 restart; /bin/bash /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log
+ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; ln -s /srv/secret/buddycloud.pem /etc/apache2/certs/buddycloud.pem; service apache2 restart; /bin/bash /usr/local/bin/run_ls_fw.sh; tail -F /var/log/apache2/*.log
 EXPOSE 80 443
