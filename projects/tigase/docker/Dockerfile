@@ -34,6 +34,7 @@ ADD tigase.conf /opt/tigase-server/etc/tigase.conf
 ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
+# Patched with https://projects.tigase.org/attachments/1475/tigase-ibr-cidr-whitelist.patch
 ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
 
 ENV http_proxy ""
