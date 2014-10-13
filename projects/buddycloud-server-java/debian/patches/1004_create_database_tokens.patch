@@ -1,14 +1,13 @@
 Description: Create database tokens for dbconfig
 Author: Abmar Barros <abmar@buddycloud.com>
-Last-Update: 2013-08-06
+Last-Update: 2014-10-13
 
---- a/configuration.properties.example	2013-08-06 16:00:06.000000000 +0100
-+++ b/configuration.properties.example	2013-08-06 16:01:53.862662029 +0100
-@@ -7,4 +7,4 @@
+--- a/configuration.properties.example  2013-08-06 16:00:06.000000000 +0100
++++ b/configuration.properties.example  2014-10-13 16:01:53.862662029 +0100
+@@ -7,3 +7,3 @@
 -jdbc.proxool.driver-url=jdbc:postgresql://localhost:5432/buddycloud
 +jdbc.proxool.driver-url=jdbc:postgresql://localhost:5432/#DATABASE_NAME#
 -jdbc.user=buddycloud
 +jdbc.user=#DATABASE_USER#
 -jdbc.password=password
 +jdbc.password=#DATABASE_PASSWORD#
- jdbc.proxool.maximum-connection-count=10
