@@ -15,7 +15,7 @@ hostname = parsed_url.hostname
 
 conn = psycopg2.connect(
     database = database,
-    user = username,a
+    user = username,
     password = password,
     host = hostname
 )
