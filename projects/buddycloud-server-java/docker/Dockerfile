@@ -31,7 +31,6 @@ ADD buddycloud-server-java.deb /tmp/buddycloud-server-java.deb
 ADD external-domain-checker /usr/bin/external-domain-checker
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-server-java.deb
 RUN chmod +x /usr/bin/external-domain-checker
-RUN cd /usr/share/buddycloud-server-java; mv channelserver*jar-with-dependencies.jar channelserver-jar-with-dependencies.jar
 
 # add logstash conf
 ADD logstash.conf /tmp/logstash.conf
