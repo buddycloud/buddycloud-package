@@ -3,6 +3,18 @@ var express    = require('express')
   , Primus     = require('primus')
   , xmpp       = require('xmpp-ftw')
   , Buddycloud = require('xmpp-ftw-buddycloud')
+  , winston = require('winston');
+
+var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.File)({ 
+        filename: '/var/log/xmpp-ftw/xmpp-ftw.log',
+        handleExceptions: true,
+	level: 'debug',
+	json: false
+      })
+    ]
+})
 
 var app = express()
 
@@ -11,14 +23,14 @@ app.get('/', function(req, res){
 })
 
 var server = app.listen(6000, function() {
-    console.log('Listening on port %d', server.address().port)
+    logger.info('Listening on port %d', server.address().port)
 })
 
 app.configure(function() {
     app.use(express.static(__dirname + '/public'))
     app.use(express.bodyParser())
     app.use(express.methodOverride())
-    app.use(express.logger)
+    app.use(logger)
     app.use(express.errorHandler({
         dumpExceptions: true,
         showStack: true
@@ -41,17 +53,17 @@ primus.use('emitter', Emitter)
 primus.save(__dirname + '/public/scripts/primus/primus.js')
 
 primus.on('connection', function(socket) {
-    console.log('Websocket connection made')
+    logger.info('Websocket connection made')
     var xmppFtw = new xmpp.Xmpp(socket)
     xmppFtw.addListener(new Buddycloud())
     socket.xmppFtw = xmppFtw
 })
 
 primus.on('disconnection', function(socket) {
-    console.log('Client disconnected, logging them out')
+    logger.info('Client disconnected, logging them out')
     try {
         socket.xmppFtw.logout()
     } catch (e) {
-        console.log(e)
+        logger.error(e)
     }
 })
