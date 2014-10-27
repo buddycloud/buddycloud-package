@@ -1,18 +1,15 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
-# sanitize all package lists
-RUN echo > /etc/apt/sources.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
-RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
+ENV http_proxy http://172.17.42.1:3128
+ENV https_proxy http://172.17.42.1:3128
 
 # add python
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y python-setuptools python-dev postgresql-server-dev-9.1 libsqlite3-dev python dbconfig-common build-essential
-RUN apt-get install --no-install-recommends -y python-sqlalchemy
+RUN apt-get install --no-install-recommends -y postgresql-client
 
 # add logstash sources list and install it
 RUN apt-get install --no-install-recommends -y wget
@@ -24,11 +21,18 @@ RUN apt-get install --no-install-recommends -y logstash-forwarder
 # add logstash conf
 ADD logstash.conf /tmp/logstash.conf
 
+# create hosting XMPP account
+ADD create-hosting-account.sh /tmp/create-hosting-account.sh
+RUN bash /tmp/create-hosting-account.sh
+
 # install the hosting package
 ADD hosting.deb /tmp/hosting.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/hosting.deb
 ADD buddycloud-hosting.cfg /usr/share/buddycloud-hosting/hosting.cfg
 ADD logging.cfg /usr/share/buddycloud-hosting/logging.cfg
+
+ENV http_proxy ""
+ENV https_proxy ""
 
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/buddycloud-hosting; python run.py
 EXPOSE 3000

@@ -21,7 +21,6 @@ conn = psycopg2.connect(
 )
 
 cur = conn.cursor()
-cur.execute('SELECT COUNT(*) FROM vhost WHERE "name"=%s', (sys.argv[1],))
-result = cur.fetchone()
-if result[0] == 0:
-    raise Exception()
+cur.execute('SELECT name FROM vhost')
+rows = cur.fetchall()
+print ",".join([str(row[0]) for row in rows])
