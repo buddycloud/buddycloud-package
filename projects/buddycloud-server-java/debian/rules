@@ -42,5 +42,5 @@ CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
 install/$(pkg)::
 	install -D -m 0644 postgres/install.sql \
         	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server-java/install/pgsql'
-	cat postgres/upgrade-*.sql >> \
+	cat postgres/upgrade.*.sql >> \
             	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-server-java/install/pgsql'
