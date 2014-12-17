@@ -24,6 +24,7 @@ http_arecord=#HOSTING_HTTP_A_RECORD#
 s2s_arecord=#HOSTING_S2S_A_RECORD#
 c2s_arecord=#HOSTING_C2S_A_RECORD#
 bindhost=#HOSTING_DNS_HOST#
+reserved=channels,channelserver,cs,bc,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,billing,accounting,office,world,users,admin,test,testing,buddycloud,drive,calendar,mail,sites,music,video,setup,db,database,www,news,blog,network,git,mail,smtp,webmail
 
 [smtp]
 host=#HOSTING_SMTP_HOST#
