@@ -1,8 +1,6 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
-ENV http_proxy http://172.17.42.1:3128
-
 # add chris-lea repo
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update --fix-missing
@@ -32,8 +30,6 @@ ADD logstash.conf /tmp/logstash.conf
 
 # add pm2
 RUN npm install -g pm2
-
-ENV http_proxy ""
 
 # run the endpoint
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/xmpp-ftw; node -v; pm2 start index.js -i 1; wait

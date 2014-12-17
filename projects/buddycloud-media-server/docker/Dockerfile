@@ -1,9 +1,6 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
-ENV http_proxy http://172.17.42.1:3128
-ENV https_proxy http://172.17.42.1:3128
-
 # add java
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
@@ -30,9 +27,6 @@ RUN bash /tmp/create-media-account.sh
 # update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
-
-ENV http_proxy ""
-ENV https_proxy ""
 
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/buddycloud-media-server; java -jar buddycloud-media-server-jar-with-dependencies.jar
 EXPOSE 60080
