@@ -1,11 +1,5 @@
 server {
     listen 80;
-    server_name ~^buddycloud\.(?<domain>.+)$;
-    rewrite ^ https://http.#BC_DOMAIN#?h=$domain permanent;
-}
-
-server {
-    listen 80;
     server_name hosting.#BC_DOMAIN#;
     rewrite ^ https://$server_name$request_uri? permanent;
 }
@@ -25,13 +19,13 @@ server {
 
 server {
     listen 80;
-    server_name *.#BC_DOMAIN#;
+    server_name *.#BC_DOMAIN# ~^buddycloud\.(?<domain>.+)$;
     rewrite ^ https://$server_name$request_uri? permanent;
 }
 
 server {
     listen              443 ssl;
-    server_name         *.#BC_DOMAIN#;
+    server_name         *.#BC_DOMAIN# ~^buddycloud\.(?<domain>.+)$;
     ssl_certificate     /etc/certs/buddycloud.pem;
     ssl_certificate_key /etc/certs/buddycloud.pem;
     ssl_protocols       SSLv3 TLSv1 TLSv1.1 TLSv1.2;
@@ -42,6 +36,9 @@ server {
 
     location /api/ {
         proxy_pass http://#BC_ENV_HOST#:9123/;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
     }
 
     location /primus/1/websocket {
