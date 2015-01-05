@@ -23,6 +23,11 @@ server {
     return 301 https://$host$request_uri;
 }
 
+map $host $forwarded_host {
+    ~^buddycloud\.(?<domain>.+)$ $domain;
+    default $host;
+}
+
 server {
     listen              443 ssl;
     server_name         *.#BC_DOMAIN# ~^buddycloud\.(?<domain>.+)$;
@@ -36,7 +41,7 @@ server {
 
     location /api/ {
         proxy_pass http://#BC_ENV_HOST#:9123/;
-        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Host $forwarded_host;
         proxy_set_header X-Forwarded-Server $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
     }
