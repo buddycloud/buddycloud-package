@@ -1,9 +1,6 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
-ENV http_proxy http://172.17.42.1:3128
-ENV https_proxy http://172.17.42.1:3128
-
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl postgresql-client
@@ -36,9 +33,6 @@ ADD admin-groovy/ /opt/tigase-server/scripts/admin/
 ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
 # Patched with https://projects.tigase.org/attachments/1475/tigase-ibr-cidr-whitelist.patch
 ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
-
-ENV http_proxy ""
-ENV https_proxy ""
 
 # run tigase
 ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
