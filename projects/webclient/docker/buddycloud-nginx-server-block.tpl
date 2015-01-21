@@ -1,5 +1,11 @@
 server {
     listen 80;
+    server_name ~^buddycloud\.(?<domain>.+)$;
+    rewrite ^ https://http.#BC_DOMAIN#?h=$domain permanent;
+}
+
+server {
+    listen 80;
     server_name hosting.#BC_DOMAIN#;
     rewrite ^ https://$server_name$request_uri? permanent;
 }
@@ -19,8 +25,8 @@ server {
 
 server {
     listen 80;
-    server_name *.#BC_DOMAIN# ~^buddycloud\.(?<domain>.+)$;
-    return 301 https://$host$request_uri;
+    server_name *.#BC_DOMAIN#;
+    rewrite ^ https://$server_name$request_uri? permanent;
 }
 
 map $host $forwarded_host {
@@ -30,7 +36,7 @@ map $host $forwarded_host {
 
 server {
     listen              443 ssl;
-    server_name         *.#BC_DOMAIN# ~^buddycloud\.(?<domain>.+)$;
+    server_name         *.#BC_DOMAIN#;
     ssl_certificate     /etc/certs/buddycloud.pem;
     ssl_certificate_key /etc/certs/buddycloud.pem;
     ssl_protocols       SSLv3 TLSv1 TLSv1.1 TLSv1.2;
