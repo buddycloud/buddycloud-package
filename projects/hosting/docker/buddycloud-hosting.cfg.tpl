@@ -26,6 +26,7 @@ c2s_arecord=#HOSTING_C2S_A_RECORD#
 bindhost=#HOSTING_DNS_HOST#
 channel_server_arecord=#CHANNELS_XMPP_COMPONENT_SUBDOMAIN#
 checker_recipient=#HOSTING_DNS_SYNC_RECIPIENT#
+checker_period=3600
 reserved=channels,channelserver,cs,bc,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,billing,accounting,office,world,users,admin,test,testing,buddycloud,drive,calendar,mail,sites,music,video,setup,db,database,www,news,blog,network,git,mail,smtp,webmail
 
 [smtp]
