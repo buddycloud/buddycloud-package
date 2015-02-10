@@ -1,5 +1,5 @@
 # Ubuntu/precise is the main distribution
-FROM ubuntu:precise
+FROM ubuntu:trusty
 
 # add chris-lea repo
 RUN rm -rvf /var/lib/apt/lists/*
@@ -15,7 +15,7 @@ RUN apt-get install --no-install-recommends -y wget nodejs
 # add logstash sources list and install it
 RUN apt-get install --no-install-recommends -y wget
 RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
+echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y logstash-forwarder
 
