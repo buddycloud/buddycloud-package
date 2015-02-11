@@ -13,7 +13,11 @@ source "$CURRENT_DIR/settings.$BUILD_ENV"
 DEPLOY_USER_AT_HOST=$DEPLOY_DOCKER_USER@$DEPLOY_DOCKER_HOST
 
 # Get latest changes for buddycloud-package
-ssh $DEPLOY_USER_AT_HOST "cd $PACKAGE_PROJECT; git pull"
+BRANCH="master"
+if [ "$BUILD_ENV" == "prod" ]; then
+  BRANCH=$(git tag | tail -1)
+fi
+ssh $DEPLOY_USER_AT_HOST "cd $PACKAGE_PROJECT; git checkout $BRANCH; git pull"
 
 # Docker folder
 DOCKER_PROJECT=$PACKAGE_PROJECT/projects/$PROJECT_NAME/docker
