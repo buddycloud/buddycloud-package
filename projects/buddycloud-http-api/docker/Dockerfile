@@ -15,7 +15,7 @@ RUN apt-get install --no-install-recommends -y wget nodejs
 # add logstash sources list and install it
 RUN apt-get install --no-install-recommends -y wget
 RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
+RUN echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y logstash-forwarder
 
