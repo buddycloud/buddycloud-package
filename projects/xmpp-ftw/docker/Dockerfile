@@ -12,25 +12,15 @@ RUN add-apt-repository ppa:chris-lea/node.js
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y nodejs
 
-# add logstash sources list and install it
-RUN apt-get install --no-install-recommends -y wget
-RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-RUN echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
-RUN apt-get update
-RUN apt-get install --no-install-recommends -y logstash-forwarder
-
 # install the xmpp-ftw
 ADD package.json /usr/share/xmpp-ftw/package.json
 RUN cd /usr/share/xmpp-ftw; npm config set registry http://registry.npmjs.org/; npm install
 ADD index.js /usr/share/xmpp-ftw/index.js
 RUN mkdir -p /usr/share/xmpp-ftw/public/scripts/primus
 
-# add logstash conf
-ADD logstash.conf /tmp/logstash.conf
-
 # add pm2
 RUN npm install -g pm2
 
 # run the endpoint
-ENTRYPOINT ln -s /srv/secret/logstash-forwarder.crt /opt/logstash-forwarder/logstash-forwarder.crt; ln -s /srv/secret/logstash-forwarder.key /opt/logstash-forwarder/logstash-forwarder.key; /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash.conf & cd /usr/share/xmpp-ftw; node -v; pm2 start index.js -i 1; wait
+ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; pm2 start index.js -i 1; wait
 EXPOSE 6000
