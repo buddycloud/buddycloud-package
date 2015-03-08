@@ -15,7 +15,6 @@ https.key.password=password
 xmpp.component.host=#XMPP_COMPONENT_HOST#
 xmpp.component.port=#XMPP_COMPONENT_PORT#
 xmpp.component.subdomain=#MEDIA_XMPP_COMPONENT_SUBDOMAIN#
-xmpp.component.servername=#MEDIA_XMPP_COMPONENT_SERVERNAME#
 xmpp.component.secretkey=#MEDIA_XMPP_COMPONENT_PASSWORD#
 
 xmpp.connection.username=#MEDIA_XMPP_CLIENT_USER#
