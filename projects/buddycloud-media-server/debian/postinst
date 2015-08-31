@@ -11,9 +11,13 @@ fi
 
 # Adds buddycloud user
 if [ "$1" = "configure" ]; then
-    adduser --system --quiet --group --disabled-password \
-        --gecos "buddycloud sys account" \
-        --no-create-home --home "/var/run/$pkg" \
+    id -u buddycloud &>/dev/null ||  adduser \
+        --system \
+        --quiet \
+        --group \
+        --disabled-password \
+        --gecos "buddycloud system user" \
+        --home "/var/run/buddycloud" \
         buddycloud
 fi
 
