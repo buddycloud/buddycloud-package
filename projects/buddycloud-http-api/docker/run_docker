@@ -2,5 +2,9 @@
 
 IMAGE_NAME=$1
 
+<<<<<<< HEAD
 docker run -d --name=$IMAGE_NAME -v /var/log/buddycloud-http-api:/var/log/buddycloud-http-api -P -p 9123:9123 -t $IMAGE_NAME
+=======
+docker run -d --name=$IMAGE_NAME -v /srv/secret:/srv/secret -v /var/log/buddycloud-http-api:/var/log/buddycloud-http-api -P -p 9123:9123 -t $IMAGE_NAME
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 

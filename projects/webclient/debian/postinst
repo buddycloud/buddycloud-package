@@ -1,5 +1,6 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 # ensure you have the correct modules enabled in Apache
 a2enmod rewrite proxy_http ssl headers expires deflate
 
@@ -13,4 +14,6 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/CN=www.example.
 # enable the virtual host:
 a2ensite buddycloud-apache-virtual-host
  
+=======
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 #DEBHELPER#

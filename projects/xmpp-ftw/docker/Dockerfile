@@ -1,8 +1,11 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
+<<<<<<< HEAD
 ENV http_proxy http://172.17.42.1:3128
 
+=======
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 # add chris-lea repo
 RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update --fix-missing
@@ -20,8 +23,16 @@ RUN cd /usr/share/xmpp-ftw; npm config set registry http://registry.npmjs.org/; 
 ADD index.js /usr/share/xmpp-ftw/index.js
 RUN mkdir -p /usr/share/xmpp-ftw/public/scripts/primus
 
+<<<<<<< HEAD
 ENV http_proxy ""
 
 # run the endpoint
 ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; npm start >> /var/log/xmpp-ftw/xmpp-ftw.log
+=======
+# add pm2
+RUN npm install -g pm2
+
+# run the endpoint
+ENTRYPOINT cd /usr/share/xmpp-ftw; node -v; pm2 start index.js -i 1; wait
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 EXPOSE 6000

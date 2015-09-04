@@ -24,7 +24,7 @@ daemon = $(pkg)
 
 # Needed both at build time and (always) at runtime
 #  * node modules needed at build time to create manpage
-CDBS_DEPENDS_$(pkg) = lsb-base, adduser, python, python-setuptools, python-dev, postgresql-server-dev-9.1, libsqlite3-dev
+CDBS_DEPENDS_$(pkg) = lsb-base, adduser, python, python-setuptools, python-dev, libsqlite3-dev
 
 DEB_INSTALL_DOCS_ALL += README.md
 

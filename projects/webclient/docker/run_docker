@@ -2,5 +2,9 @@
 
 IMAGE_NAME=$1
 
+<<<<<<< HEAD
 docker run -v /srv/secret:/srv/secret -v /var/log/apache2:/var/log/apache2 -P -p 80:80 -p 443:443 -d --name=$IMAGE_NAME -t $IMAGE_NAME
+=======
+docker run -v /srv/secret:/srv/secret -v /var/log/nginx:/var/log/nginx -P -p 80:80 -p 443:443 -d --name=$IMAGE_NAME -t $IMAGE_NAME
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 

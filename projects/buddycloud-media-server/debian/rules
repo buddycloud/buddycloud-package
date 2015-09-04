@@ -33,12 +33,18 @@ DEB_INSTALL_DOCS_ALL += README.md
 #  * source patched to load config from code dir (not oddly one dir out)
 #  * Add dummy config to support help2man usage from staging area
 build/$(pkg)::
+<<<<<<< HEAD
 	mvn clean package -e -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true -P uncompressed -Duser.home=/tmp/$(pkg)
+=======
+	mvn clean package -e -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true -Duser.home=/tmp/$(pkg)
+>>>>>>> f7f2029bf9c65699c35e2d32ffe21d70422844cb
 clean::
 	rm -rf target
 
 CDBS_PREDEPENDS_$(pkg) += , dbconfig-common
 CDBS_RECOMMENDS_$(pkg) += , postgresql-client, postgresql
 install/$(pkg)::
-	install -D -m 0644 resources/schema/create_schema.sql \
-	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'
+	install -D -m 0644 postgres/base.sql \
+        	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'
+	cat postgres/upgrade-*.sql >> \
+            	'$(cdbs_curdestdir)/usr/share/dbconfig-common/data/buddycloud-media-server/install/pgsql'	

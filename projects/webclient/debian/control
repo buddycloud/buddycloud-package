@@ -11,6 +11,5 @@ Package: buddycloud-webclient
 Architecture: all
 Depends: ${misc:Depends},
  ${cdbs:Depends}
-Recommends: apache2
 Description: This is the buddycloud web software for buddycloud. 
  This software uses the buddycloud HTTP API.
