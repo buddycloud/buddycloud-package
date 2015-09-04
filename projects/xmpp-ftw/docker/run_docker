@@ -1,0 +1,6 @@
+#!/bin/bash
+
+IMAGE_NAME=$1
+
+docker run -d --name=$IMAGE_NAME -v /var/log/xmpp-ftw:/var/log/xmpp-ftw -P -p 6000:6000 -t $IMAGE_NAME
+

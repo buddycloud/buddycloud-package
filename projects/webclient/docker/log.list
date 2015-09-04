@@ -1,0 +1,8 @@
+/var/log/apache2/web.buddycloud.com-access.log
+web_apache_access
+/var/log/apache2/other_vhosts_access.log
+other_vhosts_apache_access
+/var/log/apache2/hosting.buddycloud.com-access.log
+hosting_apache_access
+/var/log/apache2/xmpp-ftw.buddycloud.com-access.log
+xmpp-ftw_apache_access

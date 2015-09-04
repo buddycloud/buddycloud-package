@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Docker host username
+DEPLOY_DOCKER_USER=username
+
+# Docker host
+DEPLOY_DOCKER_HOST=host
+
+# Where buddycloud-package is
+PACKAGE_PROJECT=buddycloud-package
+
+# How much time the script will wait to
+# check if it is running
+WAIT_RUN_TIME=10
+

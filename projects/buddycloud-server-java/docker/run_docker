@@ -1,0 +1,5 @@
+#!/bin/bash
+
+IMAGE_NAME=$1
+
+docker run -d -name=$IMAGE_NAME -v /var/log/buddycloud-server-java:/var/log/buddycloud-server-java  -t $IMAGE_NAME
