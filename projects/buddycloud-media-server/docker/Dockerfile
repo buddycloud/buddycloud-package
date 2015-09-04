@@ -8,13 +8,16 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted u
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
 # add wget and java
+RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
 RUN apt-get install --no-install-recommends -y openjdk-7-jdk dbconfig-common
 ADD buddycloud-media-server.deb /tmp/buddycloud-media-server.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/buddycloud-media-server.deb
 
+# update configuration files
 ADD logback.xml /usr/share/buddycloud-media-server/logback.xml
 ADD mediaserver.properties /usr/share/buddycloud-media-server/mediaserver.properties
 
 ENTRYPOINT cd /usr/share/buddycloud-media-server; java -cp .:*:lib/* com.buddycloud.mediaserver.Main
-EXPOSE 60080:60080
+EXPOSE 60080

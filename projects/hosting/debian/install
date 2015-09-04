@@ -3,4 +3,5 @@ setup.py usr/share/buddycloud-hosting
 MANIFEST.in usr/share/buddycloud-hosting
 hosting.cfg.tokenized usr/share/buddycloud-hosting
 hosting usr/share/buddycloud-hosting
+contrib/resources/smtp /usr/share/buddycloud-hosting/contrib/resources
 contrib/init.d/buddycloud-hosting etc/init.d

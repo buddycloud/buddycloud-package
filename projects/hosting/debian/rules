@@ -19,7 +19,7 @@
 include /usr/share/cdbs/1/rules/utils.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 
-pkg = $(DEB_SOURCE_PACKAGE)
+pkg = buddycloud-hosting
 daemon = $(pkg)
 
 # Needed both at build time and (always) at runtime
@@ -32,7 +32,7 @@ DEB_INSTALL_DOCS_ALL += README.md
 #  * source patched to load config from code dir (not oddly one dir out)
 #  * Add dummy config to support help2man usage from staging area
 build/$(pkg)::
-#	python setup.py sbuild
+#	bower install
 clean::
 	rm -rf dist
 

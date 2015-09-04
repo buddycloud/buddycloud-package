@@ -1,27 +1,45 @@
 # Ubuntu/precise is the main distribution
 FROM ubuntu:precise
 
+ENV http_proxy http://172.17.42.1:3128
+ENV https_proxy http://172.17.42.1:3128
+
 # sanitize all package lists
 RUN echo > /etc/apt/sources.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise main restricted universe multiverse > /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
+RUN rm -rvf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
+RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties
+RUN add-apt-repository ppa:webupd8team/java
+
 # add wget
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget openjdk-7-jdk
+RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get install --no-install-recommends -y wget oracle-java7-installer
 
 # install tigase
-RUN wget 'https://projects.tigase.org/attachments/download/1319/tigase-server-5.2.0-rc2-b3437-dist-max.tar.gz' -O /tmp/tigase-server.tar.gz -o /dev/null
+RUN wget 'https://projects.tigase.org/attachments/download/1409/tigase-server-5.2.1-b3461-dist-max.tar.gz' -O /tmp/tigase-server.tar.gz
 RUN tar -xC /opt -zf /tmp/tigase-server.tar.gz
 RUN mv /opt/tigase-server* /opt/tigase-server
 
 # prepare tigase
-ADD tigase.conf /etc/tigase.conf
+ADD tigase.conf /opt/tigase-server/etc/tigase.conf
+ADD init.properties /opt/tigase-server/etc/init.properties
 ADD admin-groovy/ /opt/tigase-server/scripts/admin/
-RUN cd /opt/tigase-server && ./scripts/db-create-derby.sh /srv/tigasedb
+ADD UnlimitedJCEPolicy/ /usr/lib/jvm/java-7-oracle/lib/security/
+ADD tigase-server.jar /opt/tigase-server/jars/tigase-server.jar
+
+# create hosting XMPP account
+ADD create-hosting-account.sh /opt/tigase-server/create-hosting-account.sh
+RUN bash /opt/tigase-server/create-hosting-account.sh
+
+ENV http_proxy ""
+ENV https_proxy ""
 
 # run tigase
-ENTRYPOINT rm /opt/tigase-server/log{,s}/* ; cd /opt/tigase-server && ./scripts/tigase.sh run
-EXPOSE 5222:5222 5223:5223 5269:5269 5280:5280 5290:5290 5555:5555
-
+ENTRYPOINT cd /opt/tigase-server; java -version; ./scripts/tigase.sh run etc/tigase.conf; wait $!
+EXPOSE 5222 5269 5270 5290

@@ -33,7 +33,7 @@ DEB_INSTALL_DOCS_ALL += README.md
 #  * source patched to load config from code dir (not oddly one dir out)
 #  * Add dummy config to support help2man usage from staging area
 build/$(pkg)::
-	mvn clean package -e -P mediaserver-dir -Duser.home=/tmp/$(pkg)
+	mvn clean package -e -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true -P uncompressed -Duser.home=/tmp/$(pkg)
 clean::
 	rm -rf target
 

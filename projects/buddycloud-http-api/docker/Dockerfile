@@ -8,19 +8,21 @@ RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-updates main restricted u
 RUN echo deb http://archive.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse >> /etc/apt/sources.list.d/precise.list
 
 # add chris-lea repo
+RUN rm -rvf /var/lib/apt/lists/*
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties
+RUN apt-get install --no-install-recommends -y libssl1.0.0 openssl
+RUN apt-get install --no-install-recommends -y software-properties-common python-software-properties libicu-dev
 RUN add-apt-repository ppa:chris-lea/node.js
 
 # add wget and nodejs
 RUN apt-get update
-RUN apt-get install --no-install-recommends -y wget nodejs
+RUN apt-get install --no-install-recommends -y nodejs
 
 # install the httpapi
-RUN wget http://downloads.buddycloud.com/packages/debian/nightly/buddycloud-http-api/buddycloud-http-api-0.1+dev20140126.git.e0da321/buddycloud-http-api_0.1+dev20140126.git.e0da321-1_amd64.deb -O /tmp/buddycloud-http-api.deb -o /dev/null
+ADD buddycloud-http-api.deb /tmp/buddycloud-http-api.deb
 RUN dpkg -i /tmp/buddycloud-http-api.deb
 ADD config.js /usr/share/buddycloud-http-api/config.js
 
 # run the httpapi
-ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; node server.js
+ENTRYPOINT cd /usr/share/buddycloud-http-api; node -v; cat config.js; node server.js > /var/log/buddycloud-http-api/buddycloud-http-api.log
 EXPOSE 9123
