@@ -1,2 +1,3 @@
 **/debian/changelog
 build/
+projects/tigase/docker/init.properties
